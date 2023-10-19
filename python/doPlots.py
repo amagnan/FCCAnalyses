@@ -153,6 +153,7 @@ def mapHistosFromHistmaker(hName, param, plotCfg):
 #__________________________________________________________
 def runPlots(var,sel,param,hsignal,hbackgrounds,extralab,splitLeg,plotStatUnc):
 
+
     ###Below are settings for separate signal and background legends
     if(splitLeg):
         legsize = 0.04*(len(hsignal))
@@ -213,7 +214,7 @@ def runPlots(var,sel,param,hsignal,hbackgrounds,extralab,splitLeg,plotStatUnc):
         colors.append(param.colors[b])
 
     intLumiab = param.intLumi/1e+06
-    intLumi = "L = {:.0f} ab^{{-1}}".format(param.energy,intLumiab)
+    intLumi = "L = {:.0f} ab^{{-1}}".format(intLumiab)
     if hasattr(param, "intLumiLabel"):
         intLumi = getattr(param, "intLumiLabel")
 
@@ -223,8 +224,6 @@ def runPlots(var,sel,param,hsignal,hbackgrounds,extralab,splitLeg,plotStatUnc):
     if 'ee' in param.collider:
         lt = "FCCAnalyses: FCC-ee Simulation (Delphes)"
         rt = "#sqrt{{s}} = {:.1f} GeV,   {}".format(param.energy,intLumi)
-
-    
 
     customLabel=""
     try:
@@ -349,7 +348,7 @@ def runPlotsHistmaker(hName, param, plotCfg):
 
 
     intLumiab = param.intLumi/1e+06
-    intLumi = "L = {:.0f} ab^{{-1}}".format(param.energy,intLumiab)
+    intLumi = "L = {:.0f} ab^{{-1}}".format(intLumiab)
     if hasattr(param, "intLumiLabel"):
         intLumi = getattr(param, "intLumiLabel")
 
@@ -359,6 +358,7 @@ def runPlotsHistmaker(hName, param, plotCfg):
     if 'ee' in param.collider:
         lt = "FCCAnalyses: FCC-ee Simulation (Delphes)"
         rt = "#sqrt{{s}} = {:.1f} GeV,   {}".format(param.energy,intLumi)
+
 
     customLabel=""
     try:
