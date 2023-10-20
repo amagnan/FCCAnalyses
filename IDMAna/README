@@ -1,0 +1,7 @@
+#How to run
+#After compiling FCCAnalyses, also necessary to redo make install after updating the main python scripts
+source setup.sh
+fccanalysis run analysis_stage1_bkg.py #same with signal
+fccanalysis run analysis_stage2_bkg.py #same with signal
+fccanalysis final analysis_final.py
+fccanalysis plots analysis_plots.py
