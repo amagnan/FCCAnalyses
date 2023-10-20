@@ -5,10 +5,10 @@ inputDir  = "iDM/stage2/"
 outputDir  = "iDM/final/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
-#intLumi = 5e6 #pb^-1
+intLumi = 5e6 #pb^-1
 
 #Scale event yields by intLumi and cross section (optional)
-#doScale = True
+doScale = True
 
 processList = {
     'p8_ee_ZZ_ecm240':{},

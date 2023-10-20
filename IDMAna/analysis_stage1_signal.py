@@ -2,8 +2,12 @@
 processList = {
     #'p8_ee_ZZ_ecm240':{'chunks':20},#Run the full statistics in 10 jobs in output dir <outputDir>/p8_ee_ZZ_ecm240/chunk<N>.root
     #'p8_ee_WW_ecm240':{'chunks':20},#Run the full statistics in 10 jobs in output dir <outputDir>/p8_ee_WW_ecm240/chunk<N>.root
-    'Delphes_EDM4HEPevents_e240_bp1':{},
-    'Delphes_EDM4HEPevents_e240_bp2':{}
+    'h2h2ll/Delphes_EDM4HEPevents_e240_bp1':{'output':'e240_bp1_h2h2ll'},
+    'h2h2llvv/Delphes_EDM4HEPevents_e240_bp1':{'output':'e240_bp1_h2h2llvv'},
+    'h2h2ll/Delphes_EDM4HEPevents_e240_bp2':{'output':'e240_bp2_h2h2ll'},
+    'h2h2llvv/Delphes_EDM4HEPevents_e240_bp2':{'output':'e240_bp2_h2h2llvv'},
+    'h2h2ll/Delphes_EDM4HEPevents_e240_bp6':{'output':'e240_bp6_h2h2ll'},
+    'h2h2llvv/Delphes_EDM4HEPevents_e240_bp6':{'output':'e240_bp6_h2h2llvv'},
 #    'Delphes_EDM4HEPevents_e365_bp1',
 #    'Delphes_EDM4HEPevents_e365_bp1'
 }
@@ -12,10 +16,10 @@ processList = {
 #prodTag     = "FCCee/spring2021/IDEA/"
 
 # Define the input dir (optional)
-inputDir    = "/eos/user/a/amagnan/FCC/iDMprod/winter2023/h2h2ll/"
+inputDir    = "/eos/user/a/amagnan/FCC/iDMprod/winter2023/"
 
 #Optional: output directory, default is local dir
-outputDir   = "iDM/stage1"
+outputDir   = "root://eosuser//eos/user/a/amagnan/FCC/iDMprod/Analysis/stage1"
 
 #Optional: ncpus, default is 4
 nCPUS       = 4

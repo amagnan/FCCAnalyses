@@ -1,26 +1,15 @@
 #Mandatory: List of processes
 processList = {
-#    'p8_ee_ZZ_ecm240':{'fraction':0.01,'chunks':2},#Run the full statistics in 10 jobs in output dir <outputDir>/p8_ee_ZZ_ecm240/chunk<N>.root
-#    'p8_ee_WW_ecm240':{'fraction':0.005,'chunks':2},#Run the full statistics in 10 jobs in output dir <outputDir>/p8_ee_WW_ecm240/chunk<N>.root
-#    'wzp6_ee_eeH_ecm240':{'fraction':1,'chunks':2},
-#    'wzp6_ee_mumuH_ecm240':{'fraction':1,'chunks':2},
-#    'wzp6_ee_nunuH_ecm240':{'fraction':0.5,'chunks':2},
-#    'wzp6_ee_tautauH_ecm240':{'fraction':1,'chunks':2},
-#    'wzp6_ee_qqH_ecm240':{'fraction':0.1,'chunks':2},
-#    'wzp6_ee_nunuH_HWW_ecm240':{'fraction':1,'chunks':10},
-#    'wzp6_ee_nunuH_HZZ_ecm240':{'fraction':1,'chunks':10},
-#    'wzp6_ee_nunuH_Hmumu_ecm240':{'fraction':1,'chunks':10},
-#    'wzp6_ee_eeH_HWW_ecm240':{'fraction':1,'chunks':10},
-#    'wzp6_ee_eeH_HZZ_ecm240':{'fraction':1,'chunks':10},
-#    'wzp6_ee_eeH_Hmumu_ecm240':{'fraction':1,'chunks':10},
-#    'wzp6_ee_mumuH_HZZ_ecm240':{'fraction':1,'chunks':10},
-#    'wzp6_ee_mumuH_HWW_ecm240':{'fraction':1,'chunks':10},
-#    'wzp6_ee_tautauH_HZZ_ecm240':{'fraction':1,'chunks':10},
-#    'wzp6_ee_tautauH_HWW_ecm240':{'fraction':1,'chunks':10},
-#    'wzp6_ee_ee_Mee_30_150_ecm240':{'fraction':0.01,'chunks':2},
-    'wzp6_ee_mumu_ecm240':{'fraction':0.01,'chunks':2},
-    'wzp6_ee_tautau_ecm240':{'fraction':0.01,'chunks':2},
-#    'p8_ee_Zll_ecm240':{'chunks':20}
+#    'p8_ee_ZZ_ecm240':{'fraction':1,'chunks':20},#Run the full statistics in 10 jobs in output dir <outputDir>/p8_ee_ZZ_ecm240/chunk<N>.root
+#    'p8_ee_WW_ecm240':{'fraction':1,'chunks':20},#Run the full statistics in 10 jobs in output dir <outputDir>/p8_ee_WW_ecm240/chunk<N>.root
+    'wzp6_ee_eeH_ecm240':{'fraction':1,'chunks':2},
+    'wzp6_ee_mumuH_ecm240':{'fraction':1,'chunks':2},
+    'wzp6_ee_nunuH_ecm240':{'fraction':1,'chunks':2},
+    'wzp6_ee_tautauH_ecm240':{'fraction':1,'chunks':2},
+    'wzp6_ee_qqH_ecm240':{'fraction':1,'chunks':10},
+    'wzp6_ee_ee_Mee_30_150_ecm240':{'fraction':1,'chunks':20},
+    'wzp6_ee_mumu_ecm240':{'fraction':1,'chunks':20},
+    'wzp6_ee_tautau_ecm240':{'fraction':1,'chunks':20},
 #    'p8_ee_tt_ecm365':{'chunks':20},
 }
 
@@ -31,7 +20,7 @@ processList = {
 inputDir    = "/eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA"
 
 #Optional: output directory, default is local dir
-outputDir   = "iDM/stage1"
+outputDir   = "root://eosuser.cern.ch//eos/user/a/amagnan/FCC/iDMprod/Analysis/stage1"
 
 #Optional: ncpus, default is 4
 nCPUS       = 4

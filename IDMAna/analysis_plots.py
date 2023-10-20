@@ -65,7 +65,7 @@ colors['iDM1'] = ROOT.kBlack
 colors['iDM2'] = ROOT.kGray+1
 
 plots = {}
-plots['Zll'] = {
+plots['Zee'] = {
     'signal':{
         'iDM1':['Delphes_EDM4HEPevents_e240_bp1'],
         'iDM2':['Delphes_EDM4HEPevents_e240_bp2']
@@ -83,7 +83,7 @@ plots['Zll'] = {
         'nunuH':['wzp6_ee_nunuH_ecm240'],
     }
 }
-
+plots['Zmumu'] = plots['Zee']
 
 legend = {}
 legend['nunuH'] = '#nu#nuH'
