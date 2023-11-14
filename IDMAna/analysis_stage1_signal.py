@@ -2,15 +2,32 @@
 processList = {
     #'p8_ee_ZZ_ecm240':{'chunks':20},#Run the full statistics in 10 jobs in output dir <outputDir>/p8_ee_ZZ_ecm240/chunk<N>.root
     #'p8_ee_WW_ecm240':{'chunks':20},#Run the full statistics in 10 jobs in output dir <outputDir>/p8_ee_WW_ecm240/chunk<N>.root
-    'h2h2ll/Delphes_EDM4HEPevents_e240_bp1':{'output':'e240_bp1_h2h2ll'},
-    'h2h2llvv/Delphes_EDM4HEPevents_e240_bp1':{'output':'e240_bp1_h2h2llvv'},
-    'h2h2ll/Delphes_EDM4HEPevents_e240_bp2':{'output':'e240_bp2_h2h2ll'},
-    'h2h2llvv/Delphes_EDM4HEPevents_e240_bp2':{'output':'e240_bp2_h2h2llvv'},
-    'h2h2ll/Delphes_EDM4HEPevents_e240_bp6':{'output':'e240_bp6_h2h2ll'},
-    'h2h2llvv/Delphes_EDM4HEPevents_e240_bp6':{'output':'e240_bp6_h2h2llvv'},
+    'h2h2ll/Delphes_EDM4HEPevents_e240_bp1':{'output':'e240_bp1_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp1':{'output':'e240_bp1_h2h2llvv'},
+    'h2h2ll/Delphes_EDM4HEPevents_e240_bp2':{'output':'e240_bp2_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp2':{'output':'e240_bp2_h2h2llvv'},
+    'h2h2ll/Delphes_EDM4HEPevents_e240_bp3':{'output':'e240_bp3_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp3':{'output':'e240_bp3_h2h2llvv'},
+    'h2h2ll/Delphes_EDM4HEPevents_e240_bp4':{'output':'e240_bp4_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp4':{'output':'e240_bp4_h2h2llvv'},
+    'h2h2ll/Delphes_EDM4HEPevents_e240_bp5':{'output':'e240_bp5_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp5':{'output':'e240_bp5_h2h2llvv'},
+    'h2h2ll/Delphes_EDM4HEPevents_e240_bp6':{'output':'e240_bp6_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp6':{'output':'e240_bp6_h2h2llvv'},
+    'h2h2ll/Delphes_EDM4HEPevents_e240_bp7':{'output':'e240_bp7_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp7':{'output':'e240_bp7_h2h2llvv'},
+    'h2h2ll/Delphes_EDM4HEPevents_e240_bp8':{'output':'e240_bp8_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp8':{'output':'e240_bp8_h2h2llvv'},
+    'h2h2ll/Delphes_EDM4HEPevents_e240_bp9':{'output':'e240_bp9_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp9':{'output':'e240_bp9_h2h2llvv'},
+    'h2h2ll/Delphes_EDM4HEPevents_e240_bp10':{'output':'e240_bp10_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp10':{'output':'e240_bp10_h2h2llvv'},
+    'h2h2ll/Delphes_EDM4HEPevents_e240_bp11':{'output':'e240_bp11_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp11':{'output':'e240_bp11_h2h2llvv'},
+    'h2h2ll/Delphes_EDM4HEPevents_e240_bp12':{'output':'e240_bp12_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp12':{'output':'e240_bp12_h2h2llvv'},
+    'h2h2ll/Delphes_EDM4HEPevents_e240_bp13':{'output':'e240_bp13_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp13':{'output':'e240_bp13_h2h2llvv'},
+    'h2h2ll/Delphes_EDM4HEPevents_e240_bp14':{'output':'e240_bp14_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp14':{'output':'e240_bp14_h2h2llvv'},
+    ## no phase space at 240 GeV --- 'h2h2ll/Delphes_EDM4HEPevents_e240_bp15':{'output':'e240_bp15_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp15':{'output':'e240_bp15_h2h2llvv'},
+    ## no phase space at 240 GeV --- 'h2h2ll/Delphes_EDM4HEPevents_e240_bp16':{'output':'e240_bp16_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp16':{'output':'e240_bp16_h2h2llvv'},
+    ## no phase space at 240 GeV --- 'h2h2ll/Delphes_EDM4HEPevents_e240_bp17':{'output':'e240_bp17_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp17':{'output':'e240_bp17_h2h2llvv'},
+    'h2h2ll/Delphes_EDM4HEPevents_e240_bp18':{'output':'e240_bp18_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp18':{'output':'e240_bp18_h2h2llvv'},
+    'h2h2ll/Delphes_EDM4HEPevents_e240_bp19':{'output':'e240_bp19_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp19':{'output':'e240_bp19_h2h2llvv'},
+    'h2h2ll/Delphes_EDM4HEPevents_e240_bp20':{'output':'e240_bp20_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp20':{'output':'e240_bp20_h2h2llvv'},
 #    'Delphes_EDM4HEPevents_e365_bp1',
 #    'Delphes_EDM4HEPevents_e365_bp1'
 }
+
+#for bp in `seq 1 20`; do echo "'h2h2ll/Delphes_EDM4HEPevents_e240_bp${bp}':{'output':'e240_bp${bp}_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp${bp}':{'output':'e240_bp${bp}_h2h2llvv'},"; done
+
 
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
 #prodTag     = "FCCee/spring2021/IDEA/"
@@ -34,7 +51,7 @@ batchQueue = "longlunch"
 compGroup = "group_u_FCC.local_gen"
 
 #Optional output directory on eos, if specified files will be copied there once the batch job is done, default is empty
-outputDirEos = "/eos/user/a/amagnan/FCC/iDMprod/h2h2ll/Analysis/"
+#outputDirEos = "/eos/user/a/amagnan/FCC/iDMprod/h2h2ll/Analysis/"
 
 #Optional type for eos, needed when <outputDirEos> is specified. The default is FCC eos which is eospublic
 eosType = "eosuser"
@@ -125,7 +142,7 @@ class RDFanalysis():
             .Alias("Photon0", "Photon#0.index")
             .Define("photons",  "ReconstructedParticle::get(Photon0, ReconstructedParticles)")
             #select on pT
-            .Define("selected_photons", "ReconstructedParticle::sel_pt(15.)(photons)")
+            .Define("selected_photons", "ReconstructedParticle::sel_p(5.)(photons)")
             .Define("n_photons",  "ReconstructedParticle::get_n(selected_photons)") #count how many photons are in the event in total
 
             # define an alias for lepton index collection
@@ -135,30 +152,48 @@ class RDFanalysis():
             .Define("muons",  "ReconstructedParticle::get(Muon0, ReconstructedParticles)")
             .Define("electrons",  "ReconstructedParticle::get(Electron0, ReconstructedParticles)")
             #select muons on pT
-            .Define("selected_muons", "ReconstructedParticle::sel_pt(10.)(muons)")
-            .Define("selected_electrons", "ReconstructedParticle::sel_pt(10.)(electrons)")
+            .Define("selected_muons", "ReconstructedParticle::sel_p(5.)(muons)")
+            .Define("selected_electrons", "ReconstructedParticle::sel_p(5.)(electrons)")
+
             #count how many electrons are in the event in total
             .Define("n_muons",  "ReconstructedParticle::get_n(selected_muons)")
             .Define("n_electrons",  "ReconstructedParticle::get_n(selected_electrons)")
+
+
+            # Filter exactly 2 leptons
+            .Filter("n_muons==2 || n_electrons==2")
+
+
             # create branch with muon transverse momentum
             .Define("selected_muons_pt", "ReconstructedParticle::get_pt(selected_muons)")
             .Define("selected_electrons_pt", "ReconstructedParticle::get_pt(selected_electrons)")
+            .Define("selected_photons_pt", "ReconstructedParticle::get_pt(selected_photons)")
             # create branch with muon rapidity
             .Define("selected_muons_y",  "ReconstructedParticle::get_y(selected_muons)")
             .Define("selected_electrons_y",  "ReconstructedParticle::get_y(selected_electrons)")
+            .Define("selected_photons_y",  "ReconstructedParticle::get_y(selected_photons)")
             # create branch with muon rapidity
             .Define("selected_muons_eta",  "ReconstructedParticle::get_eta(selected_muons)")
             .Define("selected_electrons_eta",  "ReconstructedParticle::get_eta(selected_electrons)")
+            .Define("selected_photons_eta",  "ReconstructedParticle::get_eta(selected_photons)")
             # create branch with muon rapidity
             .Define("selected_muons_phi",  "ReconstructedParticle::get_phi(selected_muons)")
             .Define("selected_electrons_phi",  "ReconstructedParticle::get_phi(selected_electrons)")
+            .Define("selected_photons_phi",  "ReconstructedParticle::get_phi(selected_photons)")
             # create branch with muon total momentum
             .Define("selected_muons_p",     "ReconstructedParticle::get_p(selected_muons)")
             .Define("selected_electrons_p",     "ReconstructedParticle::get_p(selected_electrons)")
+            .Define("selected_photons_p",     "ReconstructedParticle::get_p(selected_photons)")
             # create branch with muon energy
             .Define("selected_muons_e",     "ReconstructedParticle::get_e(selected_muons)")
             .Define("selected_electrons_e",     "ReconstructedParticle::get_e(selected_electrons)")
-            # find zed candidates from  di-muon resonances
+            .Define("selected_photons_e",     "ReconstructedParticle::get_e(selected_photons)")
+            # create branch with muon charge
+            .Define("selected_muons_charge",     "ReconstructedParticle::get_charge(selected_muons)")
+            .Define("selected_electrons_charge",     "ReconstructedParticle::get_charge(selected_electrons)")
+
+
+            # fill Z candidate from leading lepton pair
             .Define("zed_mumu",         "ReconstructedParticle::resonanceBuilder(91)(selected_muons)")
             .Define("zed_ee",         "ReconstructedParticle::resonanceBuilder(91)(selected_electrons)")
             # create branch with zed mass
@@ -179,17 +214,16 @@ class RDFanalysis():
             # create branch with zed transverse momenta
             .Define("zed_mumu_pt",      "ReconstructedParticle::get_pt(zed_mumu)")
             .Define("zed_ee_pt",      "ReconstructedParticle::get_pt(zed_ee)")
+            # create branch with leptonic charge
+            .Define("zed_mumu_charge","ReconstructedParticle::get_charge(zed_mumu)")
+            .Define("zed_ee_charge","ReconstructedParticle::get_charge(zed_ee)")
+
             # calculate recoil of zed_leptonic
             .Define("zed_mumu_recoil",  "ReconstructedParticle::recoilBuilder(240)(zed_mumu)")
             .Define("zed_ee_recoil",  "ReconstructedParticle::recoilBuilder(240)(zed_ee)")
             # create branch with recoil mass
             .Define("zed_mumu_recoil_m","ReconstructedParticle::get_mass(zed_mumu_recoil)")
             .Define("zed_ee_recoil_m","ReconstructedParticle::get_mass(zed_ee_recoil)")
-            # create branch with leptonic charge
-            .Define("zed_mumu_charge","ReconstructedParticle::get_charge(zed_mumu)")
-            .Define("zed_ee_charge","ReconstructedParticle::get_charge(zed_ee)")
-            # Filter at least one candidate
-            #.Filter("zed_mumu_m.size()==1 || zed_ee_m.size()==1")
 
 
             #JETS
@@ -280,12 +314,20 @@ class RDFanalysis():
             "selected_muons_e",
             "selected_muons_eta",
             "selected_muons_phi",
+            "selected_muons_charge",
             "selected_electrons_pt",
             "selected_electrons_y",
             "selected_electrons_p",
             "selected_electrons_e",
             "selected_electrons_eta",
             "selected_electrons_phi",
+            "selected_electrons_charge",
+            "selected_photons_pt",
+            "selected_photons_y",
+            "selected_photons_p",
+            "selected_photons_e",
+            "selected_photons_eta",
+            "selected_photons_phi",
             "zed_mumu_pt",
             "zed_mumu_pz",
             "zed_mumu_p",

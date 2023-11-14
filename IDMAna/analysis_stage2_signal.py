@@ -2,14 +2,30 @@ processList = {
     #'p8_ee_ZZ_ecm240':{},
     #'p8_ee_WW_ecm240':{},
     #'p8_ee_ZH_ecm240':{},
-    'Delphes_EDM4HEPevents_e240_bp1':{},
-    'Delphes_EDM4HEPevents_e240_bp2':{}
+'e240_bp1_h2h2ll':{},'e240_bp1_h2h2llvv':{},
+'e240_bp2_h2h2ll':{},'e240_bp2_h2h2llvv':{},
+'e240_bp3_h2h2ll':{},'e240_bp3_h2h2llvv':{},
+'e240_bp4_h2h2ll':{},'e240_bp4_h2h2llvv':{},
+'e240_bp5_h2h2ll':{},'e240_bp5_h2h2llvv':{},
+'e240_bp6_h2h2ll':{},'e240_bp6_h2h2llvv':{},
+'e240_bp7_h2h2ll':{},'e240_bp7_h2h2llvv':{},
+'e240_bp8_h2h2ll':{},'e240_bp8_h2h2llvv':{},
+'e240_bp9_h2h2ll':{},'e240_bp9_h2h2llvv':{},
+'e240_bp10_h2h2ll':{},'e240_bp10_h2h2llvv':{},
+'e240_bp11_h2h2ll':{},'e240_bp11_h2h2llvv':{},
+'e240_bp12_h2h2ll':{},'e240_bp12_h2h2llvv':{},
+'e240_bp13_h2h2ll':{},'e240_bp13_h2h2llvv':{},
+'e240_bp14_h2h2ll':{},'e240_bp14_h2h2llvv':{},
+'e240_bp18_h2h2ll':{},'e240_bp18_h2h2llvv':{},
+'e240_bp19_h2h2ll':{},'e240_bp19_h2h2llvv':{},
+'e240_bp20_h2h2ll':{},'e240_bp20_h2h2llvv':{},
     #'p8_ee_ZH_ecm240_out':{'output':'MySample_p8_ee_ZH_ecm240'} #Run over the full statistics from stage1 input file <inputDir>/p8_ee_ZH_ecm240_out.root. Change the output name to MySample_p8_ee_ZH_ecm240
 }
+##for bp in `seq 1 20`; do echo "'e240_bp${bp}_h2h2ll':{},'e240_bp${bp}_h2h2llvv':{},"; done
 
 #Mandatory: input directory when not running over centrally produced edm4hep events. 
 #It can still be edm4hep files produced standalone or files from a first analysis step (this is the case in this example it runs over the files produced from analysis.py)
-inputDir  = "iDM/stage1/"
+inputDir  = "/eos/user/a/amagnan/FCC/iDMprod/Analysis/stage1"
 
 #Optional: output directory, default is local dir
 outputDir   = "iDM/stage2/"
@@ -49,16 +65,42 @@ class RDFanalysis():
                .Define("Zcand_povere","return Zcand_p/Zcand_e;")
                .Define("Zcand_costheta","if (zed_mumu_theta.size()==1) return TMath::Cos(zed_mumu_theta.at(0)); else if (zed_ee_theta.size()==1) return TMath::Cos(zed_ee_theta.at(0)); else return double(-1.1);")
                .Define("Zcand_recoil_m","if (zed_mumu_recoil_m.size()==1) return zed_mumu_recoil_m.at(0); else if (zed_ee_recoil_m.size()==1) return zed_ee_recoil_m.at(0); else return float(-1);")
+               .Define("photon1_pt","if (selected_photons_pt.size()>=1) return selected_photons_pt.at(0); else return float(-1);")
+               .Define("photon1_eta","if (selected_photons_eta.size()>=1) return selected_photons_eta.at(0); else return float(-5);")
+               .Define("photon1_e","if (selected_photons_e.size()>=1) return selected_photons_e.at(0); else return float(-1);")
                .Define("lep1_pt","if (selected_muons_pt.size()>=2) return selected_muons_pt.at(0); else if (selected_electrons_pt.size()>=2) return selected_electrons_pt.at(0); else return float(-1);")
                .Define("lep2_pt","if (selected_muons_pt.size()>=2) return selected_muons_pt.at(1); else if (selected_electrons_pt.size()>=2) return selected_electrons_pt.at(1); else return float(-1);")
                .Define("lep1_eta","if (selected_muons_eta.size()>=2) return selected_muons_eta.at(0); else if (selected_electrons_eta.size()>=2) return selected_electrons_eta.at(0); else return float(-5);")
                .Define("lep2_eta","if (selected_muons_eta.size()>=2) return selected_muons_eta.at(1); else if (selected_electrons_eta.size()>=2) return selected_electrons_eta.at(1); else return float(-5);")
+               .Define("lep1_e","if (selected_muons_e.size()>=2) return selected_muons_e.at(0); else if (selected_electrons_e.size()>=2) return selected_electrons_e.at(0); else return float(-1);")
+               .Define("lep2_e","if (selected_muons_e.size()>=2) return selected_muons_e.at(1); else if (selected_electrons_e.size()>=2) return selected_electrons_e.at(1); else return float(-1);")
+               .Define("lep1_pz","if (selected_muons_pt.size()>=2) return selected_muons_pt.at(0)*sinh(selected_muons_eta.at(0)); else if (selected_electrons_pt.size()>=2) return selected_electrons_pt.at(0)*sinh(selected_electrons_eta.at(0)); else return float(-1000);")
+               .Define("lep2_pz","if (selected_muons_pt.size()>=2) return selected_muons_pt.at(1)*sinh(selected_muons_eta.at(1)); else if (selected_electrons_pt.size()>=2) return selected_electrons_pt.at(1)*sinh(selected_electrons_eta.at(1)); else return float(-1000);")
+               .Define("lep1_charge","if (selected_muons_charge.size()>=2) return selected_muons_charge.at(0); else if (selected_electrons_charge.size()>=2) return selected_electrons_charge.at(0); else return float(-2);")
+               .Define("lep2_charge","if (selected_muons_charge.size()>=2) return selected_muons_charge.at(1); else if (selected_electrons_charge.size()>=2) return selected_electrons_charge.at(1); else return float(-2);")
+               .Define("lep_chargeprod","return lep1_charge*lep2_charge;")
+
+               .Define("lepp_e","if (lep1_charge>0) return lep1_e; else return lep2_e")
+               .Define("lepm_e","if (lep1_charge<0) return lep1_e; else return lep2_e")
+               .Define("lepp_pz","if (lep1_charge>0) return lep1_pz; else return lep2_pz")
+               .Define("lepm_pz","if (lep1_charge<0) return lep1_pz; else return lep2_pz")
+
                .Define("cosDphiLep","if (selected_muons_eta.size()>=2) return TMath::Cos(selected_muons_phi.at(0)-selected_muons_phi.at(1)); else if (selected_electrons_eta.size()>=2) return TMath::Cos(selected_electrons_phi.at(0)-selected_electrons_phi.at(1)); else return double(-1.1);")
                .Define("jet1_pt","if (seljet_pt.size()>=1) return seljet_pt.at(0); else return float(-1.);")
                .Define("jet1_eta","if (seljet_eta.size()>=1) return seljet_eta.at(0); else return float(-5.);")
+               .Define("jet1_e","if (seljet_e.size()>=1) return seljet_e.at(0); else return float(-1.);")
                .Define("jet2_pt","if (seljet_pt.size()>=2) return seljet_pt.at(1); else return float(-1.);")
                .Define("jet2_eta","if (seljet_eta.size()>=2) return seljet_eta.at(1); else return float(-5.);")
+               .Define("jet2_e","if (seljet_e.size()>=2) return seljet_e.at(1); else return float(-1.);")
                .Define("n_seljets","return seljet_pt.size()")
+
+
+               .Define("p1plus","1/sqrt(2)*(lepm_e+lepm_pz)")
+               .Define("p2plus","1/sqrt(2)*(lepp_e+lepp_pz)")
+               .Define("p1minus","1/sqrt(2)*(lepm_e-lepm_pz)")
+               .Define("p2minus","1/sqrt(2)*(lepp_e-lepp_pz)")
+               .Define("cosThetaStar","2*(p1plus*p2minus-p1minus*p2plus)/(Zcand_m*sqrt(Zcand_m*Zcand_m+Zcand_pt*Zcand_pt))")
+               .Define("cosThetaR","Zcand_pz/abs(Zcand_pz)*cosThetaStar")
 
                #Gen info
                .Define("FSGen_ll_pt","if (n_FSGenElectron>1) return FSGen_ee_pt; else if (n_FSGenMuon>1) return FSGen_mm_pt; else return float(-1);") 
@@ -86,11 +128,13 @@ class RDFanalysis():
             "Zcand_e",
             "Zcand_costheta",
             "Zcand_recoil_m",
-            "lep1_pt","lep1_eta",
-            "lep2_pt","lep2_eta",
-            "jet1_pt","jet1_eta",
-            "jet2_pt","jet2_eta",
-            "cosDphiLep",
+            "photon1_pt","photon1_eta","photon1_e",
+            "lep1_pt","lep1_eta","lep1_e","lep1_charge",
+            "lep2_pt","lep2_eta","lep2_e","lep2_charge",
+            "lep_chargeprod",
+            "jet1_pt","jet1_eta","jet1_e",
+            "jet2_pt","jet2_eta","jet2_e",
+            "cosDphiLep","cosThetaStar","cosThetaR",
             "n_GenH","FSGen_ll_pt","FSGen_ll_mass",
             "n_jets","n_seljets",
             "MET_e","MET_pt","MET_eta","MET_phi",
