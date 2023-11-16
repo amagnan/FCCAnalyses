@@ -1,5 +1,5 @@
 #Input directory where the files produced at the pre-selection level are
-inputDir  = "iDM/stage2/"
+inputDir  = "iDM/stage3/"
 
 
 outputDir  = "iDM/final/"
@@ -102,12 +102,16 @@ cutList = {
 
 #Dictionary for the ouput variable/hitograms. The key is the name of the variable in the output files. "name" is the name of the variable in the input file, "title" is the x-axis label of the histogram, "bin" the number of bins of the histogram, "xmin" the minimum x-axis value and "xmax" the maximum x-axis value.
 histoList = {
+    "bdt_output_bp1":{"name":"bdt_output_bp1","title":"BDT output","bin":100,"xmin":-1,"xmax":0.5},
+    "bdt_output_bp2":{"name":"bdt_output_bp2","title":"BDT output","bin":100,"xmin":-1,"xmax":0.5},
+    "bdt_output_bp6":{"name":"bdt_output_bp6","title":"BDT output","bin":100,"xmin":-1,"xmax":0.5},
+    "bdt_output_bp8":{"name":"bdt_output_bp8","title":"BDT output","bin":100,"xmin":-1,"xmax":0.5},
     "n_seljets":{"name":"n_seljets","title":"Number of cleaned jets","bin":10,"xmin":0,"xmax":10},
     "n_photons":{"name":"n_photons","title":"Number of photons","bin":10,"xmin":0,"xmax":10},
 #    "n_electrons":{"name":"n_electrons","title":"Number of electrons","bin":10,"xmin":0,"xmax":10},
 #    "n_muons":{"name":"n_muons","title":"Number of muons","bin":10,"xmin":0,"xmax":10},
     "mZ":{"name":"Zcand_m","title":"m_{ll} [GeV]","bin":60,"xmin":0,"xmax":240},
-    "mZzoom":{"name":"Zcand_m","title":"m_{ll} [GeV]","bin":40,"xmin":0,"xmax":80},
+    "mZzoom":{"name":"Zcand_m","title":"m_{ll} [GeV]","bin":60,"xmin":0,"xmax":120},
     "ptZ":{"name":"Zcand_pt","title":"p_{T}^{ll} [GeV]","bin":50,"xmin":0,"xmax":150},
     "mZrecoil":{"name":"Zcand_recoil_m","title":"Z recoil [GeV]","bin":50,"xmin":0,"xmax":250},
     "photon1_pt":{"name":"photon1_pt","title":"p_{T}^{photon1} [GeV]","bin":50,"xmin":-1,"xmax":200},

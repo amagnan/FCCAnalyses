@@ -28,7 +28,8 @@ variables = ['n_seljets','n_photons',
              'jet1_pt','jet1_eta','jet1_e',
              'MET_e','MET_pt',
              'pZ','pzZ','eZ','povereZ','costhetaZ',
-             'cosDphiLep','cosThetaStar','cosThetaR']
+             'cosDphiLep','cosThetaStar','cosThetaR',
+             'bdt_output']
 
 rebin = [1,1,
          1,1,1,1,
@@ -39,7 +40,8 @@ rebin = [1,1,
          1,1,1,
          1,1,
          1,1,1,1,1,
-         1,1,1] # uniform rebin per variable (optional)
+         1,1,1,
+         1] # uniform rebin per variable (optional)
 
 ###Dictonnary with the analysis name as a key, and the list of selections to be plotted for this analysis. The name of the selections should be the same than in the final selection
 selections = {}
