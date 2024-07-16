@@ -1,12 +1,12 @@
 processList = {
     'p8_ee_ZZ_ecm240':{},
     'p8_ee_WW_ecm240':{},
-    'wzp6_ee_eeH_ecm240':{},
-    'wzp6_ee_mumuH_ecm240':{},
-    'wzp6_ee_nunuH_ecm240':{},
-    'wzp6_ee_tautauH_ecm240':{},
-    'wzp6_ee_qqH_ecm240':{},
-    'wzp6_ee_ee_Mee_30_150_ecm240':{},
+#    'wzp6_ee_eeH_ecm240':{},
+#    'wzp6_ee_mumuH_ecm240':{},
+#    'wzp6_ee_nunuH_ecm240':{},
+#    'wzp6_ee_tautauH_ecm240':{},
+#    'wzp6_ee_qqH_ecm240':{},
+#    'wzp6_ee_ee_Mee_30_150_ecm240':{},
     'wzp6_ee_mumu_ecm240':{},
     'wzp6_ee_tautau_ecm240':{},
     'e240_bp1_h2h2ll':{},'e240_bp1_h2h2llvv':{},
@@ -84,11 +84,14 @@ def add_bdt(df):#, xmlpath, bpnum):
 
         #print("VarNames = ", l_expr)
         
-        l_varn = ROOT.std.vector['std::string']()
+        #l_varn = ROOT.std.vector['std::string']()
+        l_varn = []
         for i_expr, expr in enumerate(l_expr):
             varname = 'v_{}_{}'.format(i_expr,bpnum)
-            #print(varname)
-            l_varn.push_back(varname)
+            #print("Varname: ",varname)
+            #print("Expr: ",expr)
+            #l_varn.push_back(varname)
+            l_varn.append(varname)
             
             #if (bpnum==1):
             df=df.Define(varname, '(float)({})'.format(expr) )
@@ -96,6 +99,7 @@ def add_bdt(df):#, xmlpath, bpnum):
             #    df=df.Redefine(varname, '(float)({})'.format(expr) )
         vec_varn.append(l_varn)
 
+    print("End loop on vars, now define output variables")
     df2 = (df
            .Define("bdt_output_bp1", ROOT.computeModel1, vec_varn[0])
            .Define("bdt_output_bp2", ROOT.computeModel2, vec_varn[1])

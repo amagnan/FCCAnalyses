@@ -3,25 +3,25 @@ processList = {
     #'p8_ee_ZZ_ecm240':{'chunks':20},#Run the full statistics in 10 jobs in output dir <outputDir>/p8_ee_ZZ_ecm240/chunk<N>.root
     #'p8_ee_WW_ecm240':{'chunks':20},#Run the full statistics in 10 jobs in output dir <outputDir>/p8_ee_WW_ecm240/chunk<N>.root
     'h2h2ll/Delphes_EDM4HEPevents_e240_bp1':{'output':'e240_bp1_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp1':{'output':'e240_bp1_h2h2llvv'},
-    'h2h2ll/Delphes_EDM4HEPevents_e240_bp2':{'output':'e240_bp2_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp2':{'output':'e240_bp2_h2h2llvv'},
-    'h2h2ll/Delphes_EDM4HEPevents_e240_bp3':{'output':'e240_bp3_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp3':{'output':'e240_bp3_h2h2llvv'},
-    'h2h2ll/Delphes_EDM4HEPevents_e240_bp4':{'output':'e240_bp4_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp4':{'output':'e240_bp4_h2h2llvv'},
-    'h2h2ll/Delphes_EDM4HEPevents_e240_bp5':{'output':'e240_bp5_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp5':{'output':'e240_bp5_h2h2llvv'},
-    'h2h2ll/Delphes_EDM4HEPevents_e240_bp6':{'output':'e240_bp6_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp6':{'output':'e240_bp6_h2h2llvv'},
-    'h2h2ll/Delphes_EDM4HEPevents_e240_bp7':{'output':'e240_bp7_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp7':{'output':'e240_bp7_h2h2llvv'},
-    'h2h2ll/Delphes_EDM4HEPevents_e240_bp8':{'output':'e240_bp8_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp8':{'output':'e240_bp8_h2h2llvv'},
-    'h2h2ll/Delphes_EDM4HEPevents_e240_bp9':{'output':'e240_bp9_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp9':{'output':'e240_bp9_h2h2llvv'},
-    'h2h2ll/Delphes_EDM4HEPevents_e240_bp10':{'output':'e240_bp10_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp10':{'output':'e240_bp10_h2h2llvv'},
-    'h2h2ll/Delphes_EDM4HEPevents_e240_bp11':{'output':'e240_bp11_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp11':{'output':'e240_bp11_h2h2llvv'},
-    'h2h2ll/Delphes_EDM4HEPevents_e240_bp12':{'output':'e240_bp12_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp12':{'output':'e240_bp12_h2h2llvv'},
-    'h2h2ll/Delphes_EDM4HEPevents_e240_bp13':{'output':'e240_bp13_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp13':{'output':'e240_bp13_h2h2llvv'},
-    'h2h2ll/Delphes_EDM4HEPevents_e240_bp14':{'output':'e240_bp14_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp14':{'output':'e240_bp14_h2h2llvv'},
+#    'h2h2ll/Delphes_EDM4HEPevents_e240_bp2':{'output':'e240_bp2_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp2':{'output':'e240_bp2_h2h2llvv'},
+#    'h2h2ll/Delphes_EDM4HEPevents_e240_bp3':{'output':'e240_bp3_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp3':{'output':'e240_bp3_h2h2llvv'},
+#    'h2h2ll/Delphes_EDM4HEPevents_e240_bp4':{'output':'e240_bp4_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp4':{'output':'e240_bp4_h2h2llvv'},
+#    'h2h2ll/Delphes_EDM4HEPevents_e240_bp5':{'output':'e240_bp5_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp5':{'output':'e240_bp5_h2h2llvv'},
+#    'h2h2ll/Delphes_EDM4HEPevents_e240_bp6':{'output':'e240_bp6_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp6':{'output':'e240_bp6_h2h2llvv'},
+#    'h2h2ll/Delphes_EDM4HEPevents_e240_bp7':{'output':'e240_bp7_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp7':{'output':'e240_bp7_h2h2llvv'},
+#    'h2h2ll/Delphes_EDM4HEPevents_e240_bp8':{'output':'e240_bp8_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp8':{'output':'e240_bp8_h2h2llvv'},
+#    'h2h2ll/Delphes_EDM4HEPevents_e240_bp9':{'output':'e240_bp9_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp9':{'output':'e240_bp9_h2h2llvv'},
+#    'h2h2ll/Delphes_EDM4HEPevents_e240_bp10':{'output':'e240_bp10_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp10':{'output':'e240_bp10_h2h2llvv'},
+#    'h2h2ll/Delphes_EDM4HEPevents_e240_bp11':{'output':'e240_bp11_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp11':{'output':'e240_bp11_h2h2llvv'},
+#    'h2h2ll/Delphes_EDM4HEPevents_e240_bp12':{'output':'e240_bp12_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp12':{'output':'e240_bp12_h2h2llvv'},
+#    'h2h2ll/Delphes_EDM4HEPevents_e240_bp13':{'output':'e240_bp13_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp13':{'output':'e240_bp13_h2h2llvv'},
+#    'h2h2ll/Delphes_EDM4HEPevents_e240_bp14':{'output':'e240_bp14_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp14':{'output':'e240_bp14_h2h2llvv'},
     ## no phase space at 240 GeV --- 'h2h2ll/Delphes_EDM4HEPevents_e240_bp15':{'output':'e240_bp15_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp15':{'output':'e240_bp15_h2h2llvv'},
     ## no phase space at 240 GeV --- 'h2h2ll/Delphes_EDM4HEPevents_e240_bp16':{'output':'e240_bp16_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp16':{'output':'e240_bp16_h2h2llvv'},
     ## no phase space at 240 GeV --- 'h2h2ll/Delphes_EDM4HEPevents_e240_bp17':{'output':'e240_bp17_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp17':{'output':'e240_bp17_h2h2llvv'},
-    'h2h2ll/Delphes_EDM4HEPevents_e240_bp18':{'output':'e240_bp18_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp18':{'output':'e240_bp18_h2h2llvv'},
-    'h2h2ll/Delphes_EDM4HEPevents_e240_bp19':{'output':'e240_bp19_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp19':{'output':'e240_bp19_h2h2llvv'},
-    'h2h2ll/Delphes_EDM4HEPevents_e240_bp20':{'output':'e240_bp20_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp20':{'output':'e240_bp20_h2h2llvv'},
+#    'h2h2ll/Delphes_EDM4HEPevents_e240_bp18':{'output':'e240_bp18_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp18':{'output':'e240_bp18_h2h2llvv'},
+#    'h2h2ll/Delphes_EDM4HEPevents_e240_bp19':{'output':'e240_bp19_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp19':{'output':'e240_bp19_h2h2llvv'},
+#    'h2h2ll/Delphes_EDM4HEPevents_e240_bp20':{'output':'e240_bp20_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp20':{'output':'e240_bp20_h2h2llvv'},
 #    'Delphes_EDM4HEPevents_e365_bp1',
 #    'Delphes_EDM4HEPevents_e365_bp1'
 }
@@ -36,7 +36,8 @@ processList = {
 inputDir    = "/eos/user/a/amagnan/FCC/iDMprod/winter2023/"
 
 #Optional: output directory, default is local dir
-outputDir   = "root://eosuser//eos/user/a/amagnan/FCC/iDMprod/Analysis/stage1"
+#outputDir   = "root://eosuser//eos/user/a/amagnan/FCC/iDMprod/Analysis/stage1"
+outputDir   = "/eos/user/a/amagnan/FCC/iDMprod/Analysis/stage1"
 
 #Optional: ncpus, default is 4
 nCPUS       = 4

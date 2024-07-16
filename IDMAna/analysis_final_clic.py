@@ -1,5 +1,5 @@
 #Input directory where the files produced at the pre-selection level are
-inputDir  = "iDM/stage2/"
+inputDir  = "iDM/stage2nocut/"
 
 
 outputDir  = "iDM/final/Clic/"
@@ -13,7 +13,7 @@ doScale = True
 processList = {
     'p8_ee_ZZ_ecm240':{},
     'p8_ee_WW_ecm240':{},
-    #'wzp6_ee_eeH_ecm240':{},
+    'wzp6_ee_eeH_ecm240':{},
     'wzp6_ee_mumuH_ecm240':{},
     'wzp6_ee_nunuH_ecm240':{},
     'wzp6_ee_tautauH_ecm240':{},
@@ -24,6 +24,7 @@ processList = {
     'e240_bp1_h2h2ll':{},'e240_bp1_h2h2llvv':{},
     'e240_bp2_h2h2ll':{},'e240_bp2_h2h2llvv':{},
     'e240_bp6_h2h2ll':{},'e240_bp6_h2h2llvv':{},
+    'e240_bp8_h2h2ll':{},'e240_bp8_h2h2llvv':{},
 }
 
 #Link to the dictonary that contains all the cross section informations etc...
@@ -37,6 +38,8 @@ procDictAdd={
     "e240_bp1_h2h2llvv":{"numberOfEvents": 500000, "sumOfWeights": 500000, "crossSection":  0.001303, "kfactor": 1.0, "matchingEfficiency": 1.0},
     "e240_bp2_h2h2llvv":{"numberOfEvents": 500000, "sumOfWeights": 500000, "crossSection":  0.0009189, "kfactor": 1.0, "matchingEfficiency": 1.0},
     "e240_bp6_h2h2llvv":{"numberOfEvents": 500000, "sumOfWeights": 500000, "crossSection":  1.615e-07, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    "e240_bp8_h2h2ll":{"numberOfEvents": 500000, "sumOfWeights": 500000, "crossSection":  0.001103, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    "e240_bp8_h2h2llvv":{"numberOfEvents": 500000, "sumOfWeights": 500000, "crossSection":  2.433e-08, "kfactor": 1.0, "matchingEfficiency": 1.0},
 }
 
 #Number of CPUs to use
@@ -47,9 +50,10 @@ doTree = False
 
 ###Dictionnay of the list of cuts. The key is the name of the selection that will be added to the output file
 cutList = {
-    "TwoMu":"n_electrons==0 && n_muons==2 && n_photons==0 && n_seljets == 0 && lep1_pt*TMath::CosH(lep1_eta)>5 && lep2_pt*TMath::CosH(lep2_eta)>5",
-    "TwoMuPresel":"n_electrons==0 && n_muons==2 && n_photons==0 && n_seljets == 0 && lep1_pt*TMath::CosH(lep1_eta)>5 && lep2_pt*TMath::CosH(lep2_eta)>5 && Zcand_m<60 && TMath::Abs(Zcand_pz)<60",
-    "TwoMuCLIC":"n_electrons==0 && n_muons==2 && n_photons==0 && n_seljets == 0 && lep1_pt*TMath::CosH(lep1_eta)>5 && lep2_pt*TMath::CosH(lep2_eta)>5 && Zcand_m<60 && TMath::Abs(Zcand_pz)<60 && Zcand_e<70 && Zcand_pt>10 && TMath::Abs(Zcand_costheta)<0.87 && cosDphiLep > 0",
+    "TwoMu":"n_electrons==0 && n_muons==2 && n_photons==0 && lep1_pt*TMath::CosH(lep1_eta)>5 && lep2_pt*TMath::CosH(lep2_eta)>5",
+#    "TwoMu":"n_electrons==0 && n_muons==2 && n_photons==0 && n_seljets == 0 && lep1_pt*TMath::CosH(lep1_eta)>5 && lep2_pt*TMath::CosH(lep2_eta)>5",
+    "TwoMuPresel":"n_electrons==0 && n_muons==2 && n_photons==0 && n_seljets == 0 && lep1_pt*TMath::CosH(lep1_eta)>5 && lep2_pt*TMath::CosH(lep2_eta)>5 && Zcand_m<110 && TMath::Abs(Zcand_pz)<80",
+    "TwoMuCLIC":"n_electrons==0 && n_muons==2 && n_photons==0 && n_seljets == 0 && lep1_pt*TMath::CosH(lep1_eta)>5 && lep2_pt*TMath::CosH(lep2_eta)>5 && Zcand_m<110 && TMath::Abs(Zcand_pz)<80 && Zcand_e<70 && Zcand_pt>10 && TMath::Abs(Zcand_costheta)<0.87 && cosDphiLep > 0",
 }
 
 
@@ -80,5 +84,5 @@ histoList = {
     "povereZ":{"name":"Zcand_povere","title":"p^{ll}/E^{ll}","bin":50,"xmin":0,"xmax":1.5},
     "costhetaZ":{"name":"Zcand_costheta","title":"cos#theta^{ll}","bin":50,"xmin":-1,"xmax":1},
     "cosDphiLep":{"name":"cosDphiLep","title":"cos#Delta#phi(ll)","bin":50,"xmin":-1,"xmax":1},
-    "pzZ_mZ_2D":{"cols":["Zcand_pz", "Zcand_m"],"title":"p_{z}^{ll} - m^{ll} [GeV]", "bins": [(100,-200,200), (100,0,250)]}, # 2D histogram
+    "pzZ_mZ_2D":{"cols":["Zcand_pz", "Zcand_m"],"title":"p_{z}^{ll} - m^{ll} [GeV]", "bins": [(1000,-130,130), (1000,0,280)]}, # 2D histogram
 }

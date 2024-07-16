@@ -2,7 +2,7 @@ import ROOT
 
 # global parameters
 intLumi        = 5.0e+06 #in pb-1
-ana_tex        = 'e^{+}e^{-} #rightarrow l^{+}l^{-} + H + H'
+ana_tex        = 'e^{+}e^{-} #rightarrow l^{+}l^{-} + E^{miss}'
 delphesVersion = '3.4.2'
 energy         = 240.0
 collider       = 'FCC-ee'
@@ -18,6 +18,9 @@ plotStatUnc    = True
 scaleSig       = 1.
 #scaleBack      = 0.
 #splitLeg       = True
+legendCoord = [0.45,0.65,0.92,0.9]
+
+#variables = ['mZzoom']
 
 variables = ['n_seljets','n_photons',
              'mZ','mZzoom','ptZ','mZrecoil',
@@ -29,8 +32,14 @@ variables = ['n_seljets','n_photons',
              'MET_e','MET_pt',
              'pZ','pzZ','eZ','povereZ','costhetaZ',
              'cosDphiLep','cosThetaStar','cosThetaR',
-             'bdt_output']
+             'bdt_output_bp1','bdt_output_bp2','bdt_output_bp3','bdt_output_bp4',
+             'bdt_output_bp5','bdt_output_bp6','bdt_output_bp7','bdt_output_bp8',
+             'bdt_output_bp9','bdt_output_bp10','bdt_output_bp11','bdt_output_bp12',
+             'bdt_output_bp13','bdt_output_bp14','bdt_output_bp18','bdt_output_bp19',
+             'bdt_output_bp20'
+]
 
+#rebin = [1]
 rebin = [1,1,
          1,1,1,1,
          1,1,1,
@@ -41,22 +50,27 @@ rebin = [1,1,
          1,1,
          1,1,1,1,1,
          1,1,1,
+         5,1,1,1,
+         1,1,1,1,
+         1,1,1,1,
+         1,1,1,1,
          1] # uniform rebin per variable (optional)
 
 ###Dictonnary with the analysis name as a key, and the list of selections to be plotted for this analysis. The name of the selections should be the same than in the final selection
 selections = {}
 selections['Zee']   = ["TwoEle","TwoEleVetoObj","TwoEleLepCuts","TwoElePoverE"]
 selections['Zmumu']   = ["TwoMu","TwoMuVetoObj","TwoMuLepCuts","TwoMuPoverE"]
+#selections['Zmumu']   = ["TwoMuPoverE"]
 
 extralabel = {}
-extralabel['TwoEle'] = "Selection: N_{e} = 2, |p_{z}^{ee}|<70 GeV, M_{ee}<120 GeV, MET p_{T}>5 GeV"
+extralabel['TwoEle'] = "Selection: N_{e} = 2, |p_{z}^{ee}|<70 GeV, M_{ee}<120 GeV, E_{T}^{miss}>5 GeV"
 extralabel['TwoEleVetoObj'] = "Selection: N_{e} = 2, N_{jet}<1, no other lep or #gamma"
 extralabel['TwoEleLepCuts'] = "Selection: N_{e} = 2, p^{e}_{T}<80,60 GeV"
 extralabel['TwoElePoverE'] = "Selection: N_{e} = 2, p(ee)/E(ee)>0.1"
-extralabel['TwoMu'] = "Selection: N_{#mu} = 2,  |p_{z}^{#mu#mu}|<70 GeV, M_{#mu#mu}<120 GeV, MET p_{T}>5 GeV"
+extralabel['TwoMu'] = "Selection: N_{#mu} = 2,  |p_{z}^{#mu#mu}|<70 GeV, M_{#mu#mu}<120 GeV, E_{T}^{miss}>5 GeV"
 extralabel['TwoMuVetoObj'] = "Selection: N_{#mu} = 2, N_{jet}<1, no other lep or #gamma"
 extralabel['TwoMuLepCuts'] = "Selection: N_{#mu} = 2, p^{#mu}_{T}<80,60 GeV"
-extralabel['TwoMuPoverE'] = "Selection: N_{#mu} = 2, p(#mu#mu)/E(#mu#mu)>0.1"
+extralabel['TwoMuPoverE'] = "Selection: N_{e} = 2, p(ee)/E(ee)>0.1"
 
 
 colors = {}
@@ -64,7 +78,7 @@ colors['nunuH'] = ROOT.kRed
 colors['llH'] = ROOT.kRed+2
 #colors['mumuH'] = ROOT.kRed+4
 #colors['tautauH'] = ROOT.kRed-2
-colors['qqH'] = ROOT.kRed-4
+#colors['qqH'] = ROOT.kRed-4
 colors['eem30'] = ROOT.kViolet
 colors['tautau'] = ROOT.kViolet-1
 colors['mumu'] = ROOT.kViolet+1
@@ -73,6 +87,7 @@ colors['ZZ'] = ROOT.kGreen+2
 colors['iDM1'] = ROOT.kBlack
 colors['iDM2'] = ROOT.kGray+1
 colors['iDM6'] = ROOT.kGray-1
+colors['iDM8'] = ROOT.kGray
 
 plots = {}
 plots['Zee'] = {
@@ -80,28 +95,49 @@ plots['Zee'] = {
         'iDM1':['e240_bp1_h2h2ll','e240_bp1_h2h2llvv'],
         'iDM2':['e240_bp2_h2h2ll','e240_bp2_h2h2llvv'],
         'iDM6':['e240_bp6_h2h2ll','e240_bp6_h2h2llvv'],
+        'iDM8':['e240_bp8_h2h2ll','e240_bp8_h2h2llvv'],
     },
     'backgrounds':{
         'eem30':['wzp6_ee_ee_Mee_30_150_ecm240'],
+        #'mumu':['wzp6_ee_mumu_ecm240'],
+        'tautau':['wzp6_ee_tautau_ecm240'],
+        'WW':['p8_ee_WW_ecm240'],
+        'ZZ':['p8_ee_ZZ_ecm240'],
+        'llH':['wzp6_ee_eeH_ecm240','wzp6_ee_mumuH_ecm240','wzp6_ee_tautauH_ecm240','wzp6_ee_qqH_ecm240'],
+        #'mumuH':['wzp6_ee_mumuH_ecm240'],
+        #'tautauH':['wzp6_ee_tautauH_ecm240'],
+        #'qqH':['wzp6_ee_qqH_ecm240'],
+        'nunuH':['wzp6_ee_nunuH_ecm240'],
+    }
+}
+plots['Zmumu'] = {
+    'signal':{
+        'iDM1':['e240_bp1_h2h2ll','e240_bp1_h2h2llvv'],
+        'iDM2':['e240_bp2_h2h2ll','e240_bp2_h2h2llvv'],
+        'iDM6':['e240_bp6_h2h2ll','e240_bp6_h2h2llvv'],
+        'iDM8':['e240_bp8_h2h2ll','e240_bp8_h2h2llvv'],
+    },
+    'backgrounds':{
+        #'eem30':['wzp6_ee_ee_Mee_30_150_ecm240'],
         'mumu':['wzp6_ee_mumu_ecm240'],
         'tautau':['wzp6_ee_tautau_ecm240'],
         'WW':['p8_ee_WW_ecm240'],
         'ZZ':['p8_ee_ZZ_ecm240'],
-        'llH':['wzp6_ee_eeH_ecm240','wzp6_ee_mumuH_ecm240','wzp6_ee_tautauH_ecm240'],
+        'llH':['wzp6_ee_eeH_ecm240','wzp6_ee_mumuH_ecm240','wzp6_ee_tautauH_ecm240','wzp6_ee_qqH_ecm240'],
         #'mumuH':['wzp6_ee_mumuH_ecm240'],
         #'tautauH':['wzp6_ee_tautauH_ecm240'],
-        'qqH':['wzp6_ee_qqH_ecm240'],
+        #'qqH':['wzp6_ee_qqH_ecm240'],
         'nunuH':['wzp6_ee_nunuH_ecm240'],
     }
 }
-plots['Zmumu'] = plots['Zee']
+#plots['Zmumu'] = plots['Zee']
 
 legend = {}
 legend['nunuH'] = '#nu#nuH'
-legend['llH'] = 'llH'
+legend['llH'] = 'llH+qqH'
 #legend['mumuH'] = '#mu#muH'
 #legend['tautauH'] = '#tau#tauH'
-legend['qqH'] = 'qqH'
+#legend['qqH'] = 'qqH'
 legend['eem30'] = 'ee30-150GeV'
 legend['mumu'] = '#mu#mu'
 legend['tautau'] = '#tau#tau'
@@ -110,3 +146,4 @@ legend['ZZ'] = 'ZZ'
 legend['iDM1'] = 'iDM BP1'
 legend['iDM2'] = 'iDM BP2'
 legend['iDM6'] = 'iDM BP6'
+legend['iDM8'] = 'iDM BP8'

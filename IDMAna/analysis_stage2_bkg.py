@@ -1,23 +1,23 @@
 processList = {
-    'p8_ee_ZZ_ecm240':{},
-    'p8_ee_WW_ecm240':{},
+#    'p8_ee_ZZ_ecm240':{},
+#    'p8_ee_WW_ecm240':{},
     'wzp6_ee_eeH_ecm240':{},
     'wzp6_ee_mumuH_ecm240':{},
     'wzp6_ee_nunuH_ecm240':{},
     'wzp6_ee_tautauH_ecm240':{},
     'wzp6_ee_qqH_ecm240':{},
-    'wzp6_ee_ee_Mee_30_150_ecm240':{},
-    'wzp6_ee_mumu_ecm240':{},
-    'wzp6_ee_tautau_ecm240':{},
+#    'wzp6_ee_ee_Mee_30_150_ecm240':{},
+#    'wzp6_ee_mumu_ecm240':{},
+#    'wzp6_ee_tautau_ecm240':{},
     #'p8_ee_ZH_ecm240_out':{'output':'MySample_p8_ee_ZH_ecm240'} #Run over the full statistics from stage1 input file <inputDir>/p8_ee_ZH_ecm240_out.root. Change the output name to MySample_p8_ee_ZH_ecm240
 }
 
 #Mandatory: input directory when not running over centrally produced edm4hep events. 
 #It can still be edm4hep files produced standalone or files from a first analysis step (this is the case in this example it runs over the files produced from analysis.py)
-inputDir  = "/eos/user/a/amagnan/FCC/iDMprod/Analysis/stage1"
+inputDir  = "/eos/user/a/amagnan/FCC/iDMprod/Analysis/stage1nocut"
 
 #Optional: output directory, default is local dir
-outputDir   = "iDM/stage2/"
+outputDir   = "iDM/stage2nocut/"
 
 #Optional: ncpus, default is 4
 nCPUS       = 4
@@ -53,7 +53,8 @@ class RDFanalysis():
                .Define("Zcand_e","return sqrt(pow(Zcand_m,2)+pow(Zcand_p,2));")
                .Define("Zcand_povere","return Zcand_p/Zcand_e;")
                .Define("Zcand_costheta","if (zed_mumu_theta.size()==1) return TMath::Cos(zed_mumu_theta.at(0)); else if (zed_ee_theta.size()==1) return TMath::Cos(zed_ee_theta.at(0)); else return double(-1.1);")
-               .Define("Zcand_recoil_m","if (zed_mumu_recoil_m.size()==1) return zed_mumu_recoil_m.at(0); else if (zed_ee_recoil_m.size()==1) return zed_ee_recoil_m.at(0); else return float(-1);")
+               #Careful, the recoil returns 240 if there is no Z...check against the Z mass instead...
+               .Define("Zcand_recoil_m","if (zed_mumu_m.size()==1) return zed_mumu_recoil_m.at(0); else if (zed_ee_m.size()==1) return zed_ee_recoil_m.at(0); else return float(-1);")
                .Define("photon1_pt","if (selected_photons_pt.size()>=1) return selected_photons_pt.at(0); else return float(-1);")
                .Define("photon1_eta","if (selected_photons_eta.size()>=1) return selected_photons_eta.at(0); else return float(-5);")
                .Define("photon1_e","if (selected_photons_e.size()>=1) return selected_photons_e.at(0); else return float(-1);")

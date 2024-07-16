@@ -64,7 +64,7 @@ class RDFanalysis():
                .Define("Zcand_e","return sqrt(pow(Zcand_m,2)+pow(Zcand_p,2));")
                .Define("Zcand_povere","return Zcand_p/Zcand_e;")
                .Define("Zcand_costheta","if (zed_mumu_theta.size()==1) return TMath::Cos(zed_mumu_theta.at(0)); else if (zed_ee_theta.size()==1) return TMath::Cos(zed_ee_theta.at(0)); else return double(-1.1);")
-               .Define("Zcand_recoil_m","if (zed_mumu_recoil_m.size()==1) return zed_mumu_recoil_m.at(0); else if (zed_ee_recoil_m.size()==1) return zed_ee_recoil_m.at(0); else return float(-1);")
+               .Define("Zcand_recoil_m","if (zed_mumu_m.size()==1) return zed_mumu_recoil_m.at(0); else if (zed_ee_m.size()==1) return zed_ee_recoil_m.at(0); else return float(-1);")
                .Define("photon1_pt","if (selected_photons_pt.size()>=1) return selected_photons_pt.at(0); else return float(-1);")
                .Define("photon1_eta","if (selected_photons_eta.size()>=1) return selected_photons_eta.at(0); else return float(-5);")
                .Define("photon1_e","if (selected_photons_e.size()>=1) return selected_photons_e.at(0); else return float(-1);")

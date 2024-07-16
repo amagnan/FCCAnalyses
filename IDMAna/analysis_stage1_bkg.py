@@ -1,15 +1,15 @@
 #Mandatory: List of processes
 processList = {
-    'p8_ee_ZZ_ecm240':{'fraction':1,'chunks':20},#Run the full statistics in 10 jobs in output dir <outputDir>/p8_ee_ZZ_ecm240/chunk<N>.root
-    'p8_ee_WW_ecm240':{'fraction':1,'chunks':50},#Run the full statistics in 10 jobs in output dir <outputDir>/p8_ee_WW_ecm240/chunk<N>.root
+#    'p8_ee_ZZ_ecm240':{'fraction':0.1,'chunks':20},#Run the full statistics in 10 jobs in output dir <outputDir>/p8_ee_ZZ_ecm240/chunk<N>.root
+#    'p8_ee_WW_ecm240':{'fraction':0.1,'chunks':40},#Run the full statistics in 10 jobs in output dir <outputDir>/p8_ee_WW_ecm240/chunk<N>.root
     'wzp6_ee_eeH_ecm240':{'fraction':1,'chunks':2},
     'wzp6_ee_mumuH_ecm240':{'fraction':1,'chunks':2},
     'wzp6_ee_nunuH_ecm240':{'fraction':1,'chunks':2},
     'wzp6_ee_tautauH_ecm240':{'fraction':1,'chunks':2},
     'wzp6_ee_qqH_ecm240':{'fraction':1,'chunks':10},
-    'wzp6_ee_ee_Mee_30_150_ecm240':{'fraction':1,'chunks':20},
-    'wzp6_ee_mumu_ecm240':{'fraction':1,'chunks':20},
-    'wzp6_ee_tautau_ecm240':{'fraction':1,'chunks':20},
+#    'wzp6_ee_ee_Mee_30_150_ecm240':{'fraction':1,'chunks':20},
+#    'wzp6_ee_mumu_ecm240':{'fraction':0.2,'chunks':20},
+#    'wzp6_ee_tautau_ecm240':{'fraction':0.2,'chunks':20},
 #    'p8_ee_tt_ecm365':{'chunks':20},
 }
 
@@ -20,7 +20,8 @@ processList = {
 inputDir    = "/eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA"
 
 #Optional: output directory, default is local dir
-outputDir   = "root://eosuser.cern.ch//eos/user/a/amagnan/FCC/iDMprod/Analysis/stage1"
+#outputDir   = "root://eosuser.cern.ch//eos/user/a/amagnan/FCC/iDMprod/Analysis/stage1nocut"
+outputDir   = "/eos/user/a/amagnan/FCC/iDMprod/Analysis/stage1nocut"
 
 #Optional: ncpus, default is 4
 nCPUS       = 4
@@ -62,7 +63,7 @@ class RDFanalysis():
             .Define("MET_py", "ReconstructedParticle::get_py(MissingET)") #y-component of MET
             .Define("MET_phi", "ReconstructedParticle::get_phi(MissingET)") #angle of MET
 
-            .Filter("MET_pt[0]>5")
+#            .Filter("MET_pt[0]>5")
             
             #PHOTONS
             .Alias("Photon0", "Photon#0.index")
@@ -149,8 +150,8 @@ class RDFanalysis():
             .Define("zed_ee_charge","ReconstructedParticle::get_charge(zed_ee)")
             # Filter at least one candidate
 
-            .Filter("(zed_mumu_pz.size()>0 && abs(zed_mumu_pz[0])<70) || (zed_ee_pz.size()>0 && abs(zed_ee_pz[0])<70)")
-            .Filter("(zed_mumu_m.size()>0 && zed_mumu_m[0]<120) || (zed_ee_m.size()>0 && zed_ee_m[0]<120)")
+ #           .Filter("(zed_mumu_pz.size()>0 && abs(zed_mumu_pz[0])<70) || (zed_ee_pz.size()>0 && abs(zed_ee_pz[0])<70)")
+ #           .Filter("(zed_mumu_m.size()>0 && zed_mumu_m[0]<120) || (zed_ee_m.size()>0 && zed_ee_m[0]<120)")
             #.Filter("(zed_mumu_m.size()>0 && zed_mumu_p[0]/zed_mumu_e[0]>0.1) || (zed_ee_m.size()>0 && zed_ee_p[0]/zed_ee_e[0]>0.1)")
 
             #JETS

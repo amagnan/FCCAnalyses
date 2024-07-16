@@ -1,6 +1,7 @@
 #!/bin/bash
 
 rm signalXS.dat
+rm signalXSlatex.dat
 
 
 for bp in `seq 1 20`; do
@@ -29,3 +30,18 @@ for datadir in "h2h2ll" "h2h2llvv"; do
 done
 
 cat signalXS.dat
+
+for ecm in 240 365;
+do
+    echo "ECM: "$ecm >> signalXSlatex.dat
+    for bp in `seq 1 20`; do
+	output=${bp}
+	for datadir in "h2h2ll" "h2h2llvv"; do
+	    myres=`grep "Cross-section :" ../../MG5prod/${datadir}/ECM${ecm}_BP${bp}/condor.out | tail -n 1 | awk '{print $3}'`
+	    output=$output" & "$myres
+	done
+	echo $output" \\\\" >> signalXSlatex.dat
+    done
+done
+
+cat signalXSlatex.dat

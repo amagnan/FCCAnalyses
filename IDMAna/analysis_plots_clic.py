@@ -44,8 +44,8 @@ selections['Zmumu']   = ["TwoMu","TwoMuPresel","TwoMuCLIC"]
 
 extralabel = {}
 extralabel['TwoMu'] = "Selection: N_{#mu} = 2"
-extralabel['TwoMuPresel'] = "Selection: N_{#mu} = 2, |p_{z}^{#mu#mu}|<60 GeV, M_{#mu#mu}<60 GeV"
-extralabel['TwoMuCLIC'] = "Selection: N_{#mu} = 2, |p_{z}^{#mu#mu}|<60 GeV, M_{#mu#mu}<60 GeV, e_{#mu#mu}<70 GeV,p_{T}^{#mu#mu}>10 GeV, |cos#theta_{$mu$mu}|<0.87, cos#Delta#phi_{#mu#mu}>0"
+extralabel['TwoMuPresel'] = "Selection: N_{#mu} = 2, |p_{z}^{#mu#mu}|<80 GeV, M_{#mu#mu}<110 GeV"
+extralabel['TwoMuCLIC'] = "Selection: N_{#mu} = 2, |p_{z}^{#mu#mu}|<80 GeV, M_{#mu#mu}<110 GeV, e_{#mu#mu}<70 GeV,p_{T}^{#mu#mu}>10 GeV, |cos#theta_{$mu$mu}|<0.87, cos#Delta#phi_{#mu#mu}>0"
 
 colors = {}
 colors['nunuH'] = ROOT.kRed
@@ -61,6 +61,7 @@ colors['ZZ'] = ROOT.kGreen+2
 colors['iDM1'] = ROOT.kBlack
 colors['iDM2'] = ROOT.kGray+1
 colors['iDM6'] = ROOT.kGray-1
+colors['iDM8'] = ROOT.kGray+2
 
 plots = {}
 plots['Zmumu'] = {
@@ -68,6 +69,7 @@ plots['Zmumu'] = {
         'iDM1':['e240_bp1_h2h2ll','e240_bp1_h2h2llvv'],
         'iDM2':['e240_bp2_h2h2ll','e240_bp2_h2h2llvv'],
         'iDM6':['e240_bp6_h2h2ll','e240_bp6_h2h2llvv'],
+        'iDM8':['e240_bp8_h2h2ll','e240_bp8_h2h2llvv'],
     },
     'backgrounds':{
         #'eem30':['wzp6_ee_ee_Mee_30_150_ecm240'],
@@ -75,20 +77,20 @@ plots['Zmumu'] = {
         'tautau':['wzp6_ee_tautau_ecm240'],
         'WW':['p8_ee_WW_ecm240'],
         'ZZ':['p8_ee_ZZ_ecm240'],
-        'llH':['wzp6_ee_mumuH_ecm240','wzp6_ee_tautauH_ecm240'],
+        #'llH':['wzp6_ee_mumuH_ecm240','wzp6_ee_tautauH_ecm240'],
         #'mumuH':['wzp6_ee_mumuH_ecm240'],
         #'tautauH':['wzp6_ee_tautauH_ecm240'],
-        'qqH':['wzp6_ee_qqH_ecm240'],
-        'nunuH':['wzp6_ee_nunuH_ecm240'],
+        #'qqH':['wzp6_ee_qqH_ecm240'],
+        #'nunuH':['wzp6_ee_nunuH_ecm240'],
     }
 }
 
 legend = {}
-legend['nunuH'] = '#nu#nuH'
-legend['llH'] = 'llH'
+#legend['nunuH'] = '#nu#nuH'
+#legend['llH'] = 'llH'
 #legend['mumuH'] = '#mu#muH'
 #legend['tautauH'] = '#tau#tauH'
-legend['qqH'] = 'qqH'
+#legend['qqH'] = 'qqH'
 #legend['eem30'] = 'ee30-150GeV'
 legend['mumu'] = '#mu#mu'
 legend['tautau'] = '#tau#tau'
@@ -97,3 +99,4 @@ legend['ZZ'] = 'ZZ'
 legend['iDM1'] = 'iDM BP1'
 legend['iDM2'] = 'iDM BP2'
 legend['iDM6'] = 'iDM BP6'
+legend['iDM8'] = 'iDM BP8'
