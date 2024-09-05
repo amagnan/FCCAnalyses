@@ -341,8 +341,9 @@ def run_rdf(rdf_module,
     except Exception as excp:
         LOGGER.error('During the execution of the analysis file exception '
                      'occurred:\n%s', excp)
-        sys.exit(3)
-
+        #sys.exit(3)
+        return 0, 0
+        
     return evtcount_init.GetValue(), evtcount_final.GetValue()
 
 
@@ -485,7 +486,9 @@ def run_local(rdf_module, infile_list, args):
             LOGGER.error('Input file:\n%s\nis missing events TTree!\n'
                          'Aborting...', filepath)
             infile.Close()
-            sys.exit(3)
+            #sys.exit(3)
+            nevents_local += 0
+
         infile.Close()
 
     LOGGER.info(info_msg)

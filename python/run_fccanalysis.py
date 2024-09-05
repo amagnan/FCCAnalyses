@@ -485,7 +485,7 @@ def run_local(args, analysis, infile_list):
             LOGGER.error('Input file:\n%s\nis missing events TTree!\n'
                          'Aborting...', filepath)
             infile.Close()
-            sys.exit(3)
+            #sys.exit(3)
         infile.Close()
 
     LOGGER.info(info_msg)

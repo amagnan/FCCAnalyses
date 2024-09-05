@@ -23,7 +23,11 @@ def get_entries(inpath: str) -> int:
     nevents = None
     with ROOT.TFile(inpath, 'READ') as infile:
         tt = infile.Get("events")
-        nevents = tt.GetEntries()
+        if not tt:
+            LOGGER.error('File has no tree "events"\nSetting 0 events...')
+            nevents=0
+        else:
+            nevents = tt.GetEntries()
     return nevents
 
 

@@ -6,15 +6,17 @@ if [ "${0}" != "${BASH_SOURCE}" ]; then
   # Sourcing of the stack
   if [ -n "${KEY4HEP_STACK}" ]; then
     echo "----> Info: Key4hep stack already set up. Skipping..."
-  elif [ -f "${LOCAL_DIR}/.fccana/stackpin" ]; then
-    STACK_PATH=$(<${LOCAL_DIR}/.fccana/stackpin)
-    echo "----> Info: Sourcing pinned Key4hep stack..."
-    echo "      ${STACK_PATH}"
-    source ${STACK_PATH}
+  #elif [ -f "${LOCAL_DIR}/.fccana/stackpin" ]; then
+  #  STACK_PATH=$(<${LOCAL_DIR}/.fccana/stackpin)
+  #  echo "----> Info: Sourcing pinned Key4hep stack..."
+  #  echo "      ${STACK_PATH}"
+  #  source ${STACK_PATH}
   else
-    source /cvmfs/sw.hsf.org/key4hep/setup.sh
+  #  source /cvmfs/sw.hsf.org/key4hep/setup.sh
+      source /cvmfs/sw.hsf.org/key4hep/setup.sh -r 2024-03-10
   fi
 
+  
   if [ -z "${KEY4HEP_STACK}" ]; then
     echo "----> Error: Key4hep stack not setup correctly! Aborting..."
     return 1

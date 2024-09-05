@@ -1,30 +1,15 @@
+import numpy as np
+
 #Mandatory: List of processes
-processList = {
-    #'p8_ee_ZZ_ecm240':{'chunks':20},#Run the full statistics in 10 jobs in output dir <outputDir>/p8_ee_ZZ_ecm240/chunk<N>.root
-    #'p8_ee_WW_ecm240':{'chunks':20},#Run the full statistics in 10 jobs in output dir <outputDir>/p8_ee_WW_ecm240/chunk<N>.root
-    'h2h2ll/Delphes_EDM4HEPevents_e240_bp1':{'output':'e240_bp1_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp1':{'output':'e240_bp1_h2h2llvv'},
-#    'h2h2ll/Delphes_EDM4HEPevents_e240_bp2':{'output':'e240_bp2_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp2':{'output':'e240_bp2_h2h2llvv'},
-#    'h2h2ll/Delphes_EDM4HEPevents_e240_bp3':{'output':'e240_bp3_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp3':{'output':'e240_bp3_h2h2llvv'},
-#    'h2h2ll/Delphes_EDM4HEPevents_e240_bp4':{'output':'e240_bp4_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp4':{'output':'e240_bp4_h2h2llvv'},
-#    'h2h2ll/Delphes_EDM4HEPevents_e240_bp5':{'output':'e240_bp5_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp5':{'output':'e240_bp5_h2h2llvv'},
-#    'h2h2ll/Delphes_EDM4HEPevents_e240_bp6':{'output':'e240_bp6_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp6':{'output':'e240_bp6_h2h2llvv'},
-#    'h2h2ll/Delphes_EDM4HEPevents_e240_bp7':{'output':'e240_bp7_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp7':{'output':'e240_bp7_h2h2llvv'},
-#    'h2h2ll/Delphes_EDM4HEPevents_e240_bp8':{'output':'e240_bp8_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp8':{'output':'e240_bp8_h2h2llvv'},
-#    'h2h2ll/Delphes_EDM4HEPevents_e240_bp9':{'output':'e240_bp9_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp9':{'output':'e240_bp9_h2h2llvv'},
-#    'h2h2ll/Delphes_EDM4HEPevents_e240_bp10':{'output':'e240_bp10_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp10':{'output':'e240_bp10_h2h2llvv'},
-#    'h2h2ll/Delphes_EDM4HEPevents_e240_bp11':{'output':'e240_bp11_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp11':{'output':'e240_bp11_h2h2llvv'},
-#    'h2h2ll/Delphes_EDM4HEPevents_e240_bp12':{'output':'e240_bp12_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp12':{'output':'e240_bp12_h2h2llvv'},
-#    'h2h2ll/Delphes_EDM4HEPevents_e240_bp13':{'output':'e240_bp13_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp13':{'output':'e240_bp13_h2h2llvv'},
-#    'h2h2ll/Delphes_EDM4HEPevents_e240_bp14':{'output':'e240_bp14_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp14':{'output':'e240_bp14_h2h2llvv'},
-    ## no phase space at 240 GeV --- 'h2h2ll/Delphes_EDM4HEPevents_e240_bp15':{'output':'e240_bp15_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp15':{'output':'e240_bp15_h2h2llvv'},
-    ## no phase space at 240 GeV --- 'h2h2ll/Delphes_EDM4HEPevents_e240_bp16':{'output':'e240_bp16_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp16':{'output':'e240_bp16_h2h2llvv'},
-    ## no phase space at 240 GeV --- 'h2h2ll/Delphes_EDM4HEPevents_e240_bp17':{'output':'e240_bp17_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp17':{'output':'e240_bp17_h2h2llvv'},
-#    'h2h2ll/Delphes_EDM4HEPevents_e240_bp18':{'output':'e240_bp18_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp18':{'output':'e240_bp18_h2h2llvv'},
-#    'h2h2ll/Delphes_EDM4HEPevents_e240_bp19':{'output':'e240_bp19_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp19':{'output':'e240_bp19_h2h2llvv'},
-#    'h2h2ll/Delphes_EDM4HEPevents_e240_bp20':{'output':'e240_bp20_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp20':{'output':'e240_bp20_h2h2llvv'},
-#    'Delphes_EDM4HEPevents_e365_bp1',
-#    'Delphes_EDM4HEPevents_e365_bp1'
-}
+ecm = 240
+
+data = np.loadtxt('../../MG5prod/Teddy/cards/input_arguments_240_fail.txt', delimiter=',')
+
+processList = {}
+for mh,ma in data:
+    processList.update({"h2h2ll/Delphes_EDM4HEPevents_e%d_mH%d_mA%d"%(ecm,int(mh),int(ma)):{"output":"e%d_mH%d_mA%d_h2h2ll"%(ecm,int(mh),int(ma))}})
+    processList.update({"h2h2llvv/Delphes_EDM4HEPevents_e%d_mH%d_mA%d"%(ecm,int(mh),int(ma)):{"output":"e%d_mH%d_mA%d_h2h2llvv"%(ecm,int(mh),int(ma))}})
+
 
 #for bp in `seq 1 20`; do echo "'h2h2ll/Delphes_EDM4HEPevents_e240_bp${bp}':{'output':'e240_bp${bp}_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp${bp}':{'output':'e240_bp${bp}_h2h2llvv'},"; done
 
@@ -46,13 +31,13 @@ nCPUS       = 4
 runBatch    = False
 
 #Optional batch queue name when running on HTCondor, default is workday
-batchQueue = "longlunch"
+batchQueue = "espresso"
 
 #Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
 compGroup = "group_u_FCC.local_gen"
 
 #Optional output directory on eos, if specified files will be copied there once the batch job is done, default is empty
-#outputDirEos = "/eos/user/a/amagnan/FCC/iDMprod/h2h2ll/Analysis/"
+#outputDirEos = "/eos/user/a/amagnan/FCC/iDMprod/Analysis/stage1"
 
 #Optional type for eos, needed when <outputDirEos> is specified. The default is FCC eos which is eospublic
 eosType = "eosuser"
@@ -220,8 +205,8 @@ class RDFanalysis():
             .Define("zed_ee_charge","ReconstructedParticle::get_charge(zed_ee)")
 
             # calculate recoil of zed_leptonic
-            .Define("zed_mumu_recoil",  "ReconstructedParticle::recoilBuilder(240)(zed_mumu)")
-            .Define("zed_ee_recoil",  "ReconstructedParticle::recoilBuilder(240)(zed_ee)")
+            .Define("zed_mumu_recoil",  "ReconstructedParticle::recoilBuilder(%d)(zed_mumu)"%(ecm))
+            .Define("zed_ee_recoil",  "ReconstructedParticle::recoilBuilder(%d)(zed_ee)"%(ecm))
             # create branch with recoil mass
             .Define("zed_mumu_recoil_m","ReconstructedParticle::get_mass(zed_mumu_recoil)")
             .Define("zed_ee_recoil_m","ReconstructedParticle::get_mass(zed_ee_recoil)")
