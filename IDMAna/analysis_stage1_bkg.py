@@ -1,16 +1,19 @@
 #Mandatory: List of processes
+ecm = 365
+
 processList = {
-#    'p8_ee_ZZ_ecm240':{'fraction':0.1,'chunks':20},#Run the full statistics in 10 jobs in output dir <outputDir>/p8_ee_ZZ_ecm240/chunk<N>.root
-#    'p8_ee_WW_ecm240':{'fraction':0.1,'chunks':40},#Run the full statistics in 10 jobs in output dir <outputDir>/p8_ee_WW_ecm240/chunk<N>.root
-    'wzp6_ee_eeH_ecm240':{'fraction':1,'chunks':2},
-    'wzp6_ee_mumuH_ecm240':{'fraction':1,'chunks':2},
-    'wzp6_ee_nunuH_ecm240':{'fraction':1,'chunks':2},
-    'wzp6_ee_tautauH_ecm240':{'fraction':1,'chunks':2},
-    'wzp6_ee_qqH_ecm240':{'fraction':1,'chunks':10},
-#    'wzp6_ee_ee_Mee_30_150_ecm240':{'fraction':1,'chunks':20},
-#    'wzp6_ee_mumu_ecm240':{'fraction':0.2,'chunks':20},
-#    'wzp6_ee_tautau_ecm240':{'fraction':0.2,'chunks':20},
-#    'p8_ee_tt_ecm365':{'chunks':20},
+#    'p8_ee_ZZ_ecm%d'%(ecm):{'fraction':0.01,'chunks':1},#test run
+    'p8_ee_ZZ_ecm%d'%(ecm):{'fraction':1,'chunks':50},#Run the full statistics in 10 jobs in output dir <outputDir>/p8_ee_ZZ_ecm%d/chunk<N>.root
+    'p8_ee_WW_ecm%d'%(ecm):{'fraction':1,'chunks':20},
+    'wzp6_ee_eeH_ecm%d'%(ecm):{'fraction':1,'chunks':2},
+    'wzp6_ee_mumuH_ecm%d'%(ecm):{'fraction':1,'chunks':2},
+    'wzp6_ee_nunuH_ecm%d'%(ecm):{'fraction':1,'chunks':2},
+    'wzp6_ee_tautauH_ecm%d'%(ecm):{'fraction':1,'chunks':2},
+    'wzp6_ee_qqH_ecm%d'%(ecm):{'fraction':1,'chunks':10},
+    'wzp6_ee_ee_Mee_30_150_ecm%d'%(ecm):{'fraction':1,'chunks':6},
+    'wzp6_ee_mumu_ecm%d'%(ecm):{'fraction':1,'chunks':10},
+    'wzp6_ee_tautau_ecm%d'%(ecm):{'fraction':1,'chunks':10},
+    'p8_ee_tt_ecm%d'%(ecm):{'fraction':1,'chunks':5},
 }
 
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
@@ -21,13 +24,13 @@ inputDir    = "/eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA"
 
 #Optional: output directory, default is local dir
 #outputDir   = "root://eosuser.cern.ch//eos/user/a/amagnan/FCC/iDMprod/Analysis/stage1nocut"
-outputDir   = "/eos/user/a/amagnan/FCC/iDMprod/Analysis/stage1nocut"
+outputDir   = "/eos/user/a/amagnan/FCC/iDMprod/Analysis/stage1"
 
 #Optional: ncpus, default is 4
 nCPUS       = 4
 
 #Optional running on HTCondor, default is False
-runBatch    = False
+runBatch    = True
 
 #Optional batch queue name when running on HTCondor, default is workday
 batchQueue = "workday"
@@ -36,7 +39,7 @@ batchQueue = "workday"
 #compGroup = "group_u_FCC.local_gen"
 
 #Optional output directory on eos, if specified files will be copied there once the batch job is done, default is empty
-#outputDirEos = "/eos/user/a/amagnan/FCC/iDMprod/Analysis/Bkg"
+outputDirEos = "/eos/user/a/amagnan/FCC/iDMprod/Analysis/stage1"
 
 #Optional type for eos, needed when <outputDirEos> is specified. The default is FCC eos which is eospublic
 eosType = "eosuser"
@@ -63,7 +66,7 @@ class RDFanalysis():
             .Define("MET_py", "ReconstructedParticle::get_py(MissingET)") #y-component of MET
             .Define("MET_phi", "ReconstructedParticle::get_phi(MissingET)") #angle of MET
 
-#            .Filter("MET_pt[0]>5")
+            .Filter("MET_pt[0]>5")
             
             #PHOTONS
             .Alias("Photon0", "Photon#0.index")
@@ -140,19 +143,22 @@ class RDFanalysis():
             .Define("zed_mumu_pt",      "ReconstructedParticle::get_pt(zed_mumu)")
             .Define("zed_ee_pt",      "ReconstructedParticle::get_pt(zed_ee)")
             # calculate recoil of zed_leptonic
-            .Define("zed_mumu_recoil",  "ReconstructedParticle::recoilBuilder(240)(zed_mumu)")
-            .Define("zed_ee_recoil",  "ReconstructedParticle::recoilBuilder(240)(zed_ee)")
+            .Define("zed_mumu_recoil",  "ReconstructedParticle::recoilBuilder(%d)(zed_mumu)"%ecm)
+            .Define("zed_ee_recoil",  "ReconstructedParticle::recoilBuilder(%d)(zed_ee)"%ecm)
             # create branch with recoil mass
             .Define("zed_mumu_recoil_m","ReconstructedParticle::get_mass(zed_mumu_recoil)")
             .Define("zed_ee_recoil_m","ReconstructedParticle::get_mass(zed_ee_recoil)")
             # create branch with leptonic charge
             .Define("zed_mumu_charge","ReconstructedParticle::get_charge(zed_mumu)")
             .Define("zed_ee_charge","ReconstructedParticle::get_charge(zed_ee)")
-            # Filter at least one candidate
 
- #           .Filter("(zed_mumu_pz.size()>0 && abs(zed_mumu_pz[0])<70) || (zed_ee_pz.size()>0 && abs(zed_ee_pz[0])<70)")
- #           .Filter("(zed_mumu_m.size()>0 && zed_mumu_m[0]<120) || (zed_ee_m.size()>0 && zed_ee_m[0]<120)")
-            #.Filter("(zed_mumu_m.size()>0 && zed_mumu_p[0]/zed_mumu_e[0]>0.1) || (zed_ee_m.size()>0 && zed_ee_p[0]/zed_ee_e[0]>0.1)")
+            # Filter at least one candidate
+            .Filter("(zed_mumu_pz.size()>0 && abs(zed_mumu_pz[0])<140) || (zed_ee_pz.size()>0 && abs(zed_ee_pz[0])<140)")
+            .Filter("(zed_mumu_m.size()>0 && zed_mumu_m[0]<(-9.0/14.0 * abs(zed_mumu_pz[0]) + 200)) || (zed_ee_m.size()>0 && zed_ee_m[0]<(-9.0/14.0 * abs(zed_ee_pz[0]) + 200))")
+
+# #           .Filter("(zed_mumu_pz.size()>0 && abs(zed_mumu_pz[0])<70) || (zed_ee_pz.size()>0 && abs(zed_ee_pz[0])<70)")
+# #           .Filter("(zed_mumu_m.size()>0 && zed_mumu_m[0]<120) || (zed_ee_m.size()>0 && zed_ee_m[0]<120)")
+#            #.Filter("(zed_mumu_m.size()>0 && zed_mumu_p[0]/zed_mumu_e[0]>0.1) || (zed_ee_m.size()>0 && zed_ee_p[0]/zed_ee_e[0]>0.1)")
 
             #JETS
             .Define("n_jets", "ReconstructedParticle::get_n(Jet)") #count how many jets are in the event in total

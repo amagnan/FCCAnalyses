@@ -1,17 +1,19 @@
 import numpy as np
 
 #Mandatory: List of processes
-ecm = 240
+ecm = 365
 
-data = np.loadtxt('../../MG5prod/Teddy/cards/input_arguments_240_fail.txt', delimiter=',')
+data = np.loadtxt('../../MG5prod/Teddy/cards/input_arguments.txt', delimiter=',')
 
 processList = {}
-for mh,ma in data:
-    processList.update({"h2h2ll/Delphes_EDM4HEPevents_e%d_mH%d_mA%d"%(ecm,int(mh),int(ma)):{"output":"e%d_mH%d_mA%d_h2h2ll"%(ecm,int(mh),int(ma))}})
-    processList.update({"h2h2llvv/Delphes_EDM4HEPevents_e%d_mH%d_mA%d"%(ecm,int(mh),int(ma)):{"output":"e%d_mH%d_mA%d_h2h2llvv"%(ecm,int(mh),int(ma))}})
+#for mh,ma in data:
+#    processList.update({"h2h2ll/Delphes_EDM4HEPevents_e%d_mH%d_mA%d"%(ecm,int(mh),int(ma)):{"output":"e%d_mH%d_mA%d_h2h2ll"%(ecm,int(mh),int(ma))}})
+#    processList.update({"h2h2llvv/Delphes_EDM4HEPevents_e%d_mH%d_mA%d"%(ecm,int(mh),int(ma)):{"output":"e%d_mH%d_mA%d_h2h2llvv"%(ecm,int(mh),int(ma))}})
 
 
-#for bp in `seq 1 20`; do echo "'h2h2ll/Delphes_EDM4HEPevents_e240_bp${bp}':{'output':'e240_bp${bp}_h2h2ll'},'h2h2llvv/Delphes_EDM4HEPevents_e240_bp${bp}':{'output':'e240_bp${bp}_h2h2llvv'},"; done
+for bp in range(1,21):
+    processList.update({"h2h2ll/Delphes_EDM4HEPevents_e%d_bp%d"%(ecm,bp):{"output":"e%d_bp%d_h2h2ll"%(ecm,bp)}})
+    processList.update({"h2h2llvv/Delphes_EDM4HEPevents_e%d_bp%d"%(ecm,bp):{"output":"e%d_bp%d_h2h2llvv"%(ecm,bp)}})
 
 
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics

@@ -8,6 +8,7 @@ echo "!!!!!!!!!! Get input grid points"
 
 inputfile="../../MG5prod/Teddy/cards/input_arguments.txt"
 
+xsmax=0.0001
 
 count=0
 while IFS=', ' read -r i j; do
@@ -27,40 +28,41 @@ echo "!!!!!!! Found $count lines in file"
 let count=$count-1
 
 #for ecm in 240 365; do
-for ecm in 365; do
+#for ecm in 365; do
+
 
     
-    for datadir in "h2h2ll" "h2h2llvv"; do
-	for ic in `seq 0 ${count}`; do
-	    #echo "ECM${ecm}_MH"${mh[${ic}]}"_MA"${ma[${ic}]}
-	    ls ../../MG5prod/Teddy/${datadir}/ECM${ecm}_MH${mh[${ic}]}_MA${ma[${ic}]}/condor.out > /dev/null
-	    if [ $? -ne 0 ]; then
-		echo "!!!!!!!!!!!!! ECM${ecm}_MH${mh[${ic}]}_MA${ma[${ic}]} Not found, tail the log file instead"
-		tail -n 2 ../../MG5prod/Teddy/${datadir}/ECM${ecm}_MH${mh[${ic}]}_MA${ma[${ic}]}/condor.log
-	    else
-		myres=`grep "Cross-section :" ../../MG5prod/Teddy/${datadir}/ECM${ecm}_MH${mh[${ic}]}_MA${ma[${ic}]}/condor.out | tail -n 1 | awk '{print $3}'`
-		numevt=`grep "Nb of events" ../../MG5prod/Teddy/${datadir}/ECM${ecm}_MH${mh[${ic}]}_MA${ma[${ic}]}/condor.out | tail -n 1 | awk '{print $5}'`
-		if [ "${datadir}" == "h2h2ll" ]; then
-		    #echo "case h2h2ll: "${datadir}
-		    whhll[${ic}]=${myres}/${numevt}
-		    themonth=$(ls -ltrh ../../MG5prod/Teddy/${datadir}/ECM${ecm}_MH${mh[${ic}]}_MA${ma[${ic}]}/condor.out | awk '{print $6}')
-		    theday=$(ls -ltrh ../../MG5prod/Teddy/${datadir}/ECM${ecm}_MH${mh[${ic}]}_MA${ma[${ic}]}/condor.out | awk '{print $7}')
-		    echo -e "${ecm}\t${datadir}\tMH${mh[${ic}]}\tMA${ma[${ic}]}\t$themonth\t$theday\t${numevt}"
-		else
-		    #echo "case h2h2llvv: "${datadir}
-		    whhllvv[${ic}]=${myres}/${numevt}
-		    themonth=$(ls -ltrh ../../MG5prod/Teddy/${datadir}/ECM${ecm}_MH${mh[${ic}]}_MA${ma[${ic}]}/condor.out | awk '{print $6}')
-		    theday=$(ls -ltrh ../../MG5prod/Teddy/${datadir}/ECM${ecm}_MH${mh[${ic}]}_MA${ma[${ic}]}/condor.out | awk '{print $7}')
-		    echo -e "${ecm}\t${datadir}\tMH${mh[${ic}]}\tMA${ma[${ic}]}\t$themonth\t$theday\t${numevt}"
-		fi
-	    fi
-	done
-    done
+#    for datadir in "h2h2ll" "h2h2llvv"; do
+#	for ic in `seq 0 ${count}`; do
+#	    #echo "ECM${ecm}_MH"${mh[${ic}]}"_MA"${ma[${ic}]}
+#	    ls ../../MG5prod/Teddy/${datadir}/ECM${ecm}_MH${mh[${ic}]}_MA${ma[${ic}]}/condor.out > /dev/null
+#	    if [ $? -ne 0 ]; then
+#		echo "!!!!!!!!!!!!! ECM${ecm}_MH${mh[${ic}]}_MA${ma[${ic}]} Not found, tail the log file instead"
+#		tail -n 2 ../../MG5prod/Teddy/${datadir}/ECM${ecm}_MH${mh[${ic}]}_MA${ma[${ic}]}/condor.log
+#	    else
+#		myres=`grep "Cross-section :" ../../MG5prod/Teddy/${datadir}/ECM${ecm}_MH${mh[${ic}]}_MA${ma[${ic}]}/condor.out | tail -n 1 | awk '{print $3}'`
+#		numevt=`grep "Nb of events" ../../MG5prod/Teddy/${datadir}/ECM${ecm}_MH${mh[${ic}]}_MA${ma[${ic}]}/condor.out | tail -n 1 | awk '{print $5}'`
+#		if [ "${datadir}" == "h2h2ll" ]; then
+#		    #echo "case h2h2ll: "${datadir}
+#		    whhll[${ic}]=${myres}/${numevt}
+#		    themonth=$(ls -ltrh ../../MG5prod/Teddy/${datadir}/ECM${ecm}_MH${mh[${ic}]}_MA${ma[${ic}]}/condor.out | awk '{print $6}')
+#		    theday=$(ls -ltrh ../../MG5prod/Teddy/${datadir}/ECM${ecm}_MH${mh[${ic}]}_MA${ma[${ic}]}/condor.out | awk '{print $7}')
+#		    echo -e "${ecm}\t${datadir}\tMH${mh[${ic}]}\tMA${ma[${ic}]}\t$themonth\t$theday\t${numevt}"
+#		else
+#		    #echo "case h2h2llvv: "${datadir}
+#		    whhllvv[${ic}]=${myres}/${numevt}
+#		    themonth=$(ls -ltrh ../../MG5prod/Teddy/${datadir}/ECM${ecm}_MH${mh[${ic}]}_MA${ma[${ic}]}/condor.out | awk '{print $6}')
+#		    theday=$(ls -ltrh ../../MG5prod/Teddy/${datadir}/ECM${ecm}_MH${mh[${ic}]}_MA${ma[${ic}]}/condor.out | awk '{print $7}')
+#		    echo -e "${ecm}\t${datadir}\tMH${mh[${ic}]}\tMA${ma[${ic}]}\t$themonth\t$theday\t${numevt}"
+#		fi
+#	    fi
+#	done
+#    done
 
-    echo "${whhll[*]}"
-    echo "${whhllvv[*]}"
+#    echo "${whhll[*]}"
+#    echo "${whhllvv[*]}"
     
-    echo "!!!!!!!!!! Get dictionary lines for final stage"
+#    echo "!!!!!!!!!! Get dictionary lines for final stage"
     
     
  #   for datadir in "h2h2ll" "h2h2llvv"; do
@@ -78,23 +80,39 @@ for ecm in 365; do
   #  #done
 
     
-    echo "!!!!!!!!!! Get latex table of xs"
+echo "!!!!!!!!!! Get latex table of xs"
     
     
 #for ecm in 240 365;
 #do
-    echo "ECM: "$ecm >> signalXSlatexgrid.dat
-    for ic in `seq 0 ${count}`; do
-	output=${mh[${ic}]}" & "${ma[${ic}]}
+#    echo "ECM: "$ecm >> signalXSlatexgridNote.dat
+echo "m_{H} (GeV) & m_{A} (GeV) & \multicolumns{4}{c}{\sqrt{E} = 240 GeV} &  \multicolumns{4}{c}{\sqrt{E} = 365 GeV} \\\\">> signalXSlatexgridNote.dat     
+echo " & & \multicolumns{2}{c}{h2h2ll} &  \multicolumns{2}{c}{h2h2llvv} & \multicolumns{2}{c}{h2h2ll} &  \multicolumns{2}{c}{h2h2llvv} \\\\">> signalXSlatexgridNote.dat     
+for ic in `seq 0 ${count}`; do
+#    doprint=1
+    output=${mh[${ic}]}" & "${ma[${ic}]}
+    for ecm in 240 365;
+    do
 	for datadir in "h2h2ll" "h2h2llvv"; do
 	    myres=`grep "Cross-section :" ../../MG5prod/Teddy/${datadir}/ECM${ecm}_MH${mh[${ic}]}_MA${ma[${ic}]}/condor.out | tail -n 1 | awk '{print $3}'`
 	    numevtMG=`grep "Nb of events" ../../MG5prod/Teddy/${datadir}/ECM${ecm}_MH${mh[${ic}]}_MA${ma[${ic}]}/condor.out | tail -n 1 | awk '{print $5}'`
-	    numevt=`root -b 'getNevtsDelphes.C("/eos/user/a/amagnan/FCC/iDMprod/winter2023/'"${datadir}"'/Delphes_EDM4HEPevents_e'"${ecm}"'_mH'"${mh[${ic}]}"'_mA'"${ma[${ic}]}"'.root")'|tail -n 1 |awk '{print $2}'`
-	    output=$output" & "$myres" & "$numevtMG" & "$numevt
+	    #numevt=`root -b 'getNevtsDelphes.C("/eos/user/a/amagnan/FCC/iDMprod/winter2023/'"${datadir}"'/Delphes_EDM4HEPevents_e'"${ecm}"'_mH'"${mh[${ic}]}"'_mA'"${ma[${ic}]}"'.root")'|tail -n 1 |awk '{print $2}'`
+#	    if [ "${ecm}" = "365" ]; then
+#		if [ "${datadir}" = "h2h2ll" ]; then
+#		    if (( $(echo "$myres < $xsmax" |bc -l) )); then
+#			doprint=0
+#		    fi
+#		fi
+#	    fi
+	    output=$output" & "$myres" & "$numevtMG
+	    #" & "$numevt
 	done
-	echo $output" \\\\" >> signalXSlatexgrid.dat
     done
+#   if [ "${doprint}" == "1" ]; then
+    echo $output" \\\\" >> signalXSlatexgridNote.dat
+#  fi
 done
+#done
 
 #cat signalXSgrid.dat
-cat signalXSlatexgrid.dat
+cat signalXSlatexgridNote.dat

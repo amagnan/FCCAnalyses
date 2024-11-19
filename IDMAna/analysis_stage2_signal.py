@@ -1,14 +1,19 @@
 import numpy as np
 
 #Mandatory: List of processes
-ecm = 240
+ecm = 365
 
-data = np.loadtxt('../../MG5prod/Teddy/cards/input_arguments_240.txt', delimiter=',')
+data = np.loadtxt('../../MG5prod/Teddy/cards/input_arguments_365.txt', delimiter=',')
 
 processList = {}
-for mh,ma in data:
-    processList.update({"e%d_mH%d_mA%d_h2h2ll"%(ecm,int(mh),int(ma)):{}})
-    processList.update({"e%d_mH%d_mA%d_h2h2llvv"%(ecm,int(mh),int(ma)):{}})
+#for mh,ma in data:
+#    processList.update({"e%d_mH%d_mA%d_h2h2ll"%(ecm,int(mh),int(ma)):{}})
+#    processList.update({"e%d_mH%d_mA%d_h2h2llvv"%(ecm,int(mh),int(ma)):{}})
+
+for bp in range(1,21):
+    processList.update({"e%d_bp%d_h2h2ll"%(ecm,bp):{}})
+    processList.update({"e%d_bp%d_h2h2llvv"%(ecm,bp):{}})
+
 
 #Mandatory: input directory when not running over centrally produced edm4hep events. 
 #It can still be edm4hep files produced standalone or files from a first analysis step (this is the case in this example it runs over the files produced from analysis.py)

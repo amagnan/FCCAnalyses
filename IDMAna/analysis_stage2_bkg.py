@@ -1,23 +1,26 @@
+ecm = 240
+
 processList = {
-#    'p8_ee_ZZ_ecm240':{},
-#    'p8_ee_WW_ecm240':{},
-    'wzp6_ee_eeH_ecm240':{},
-    'wzp6_ee_mumuH_ecm240':{},
-    'wzp6_ee_nunuH_ecm240':{},
-    'wzp6_ee_tautauH_ecm240':{},
-    'wzp6_ee_qqH_ecm240':{},
-#    'wzp6_ee_ee_Mee_30_150_ecm240':{},
-#    'wzp6_ee_mumu_ecm240':{},
-#    'wzp6_ee_tautau_ecm240':{},
-    #'p8_ee_ZH_ecm240_out':{'output':'MySample_p8_ee_ZH_ecm240'} #Run over the full statistics from stage1 input file <inputDir>/p8_ee_ZH_ecm240_out.root. Change the output name to MySample_p8_ee_ZH_ecm240
+    'p8_ee_ZZ_ecm%d'%ecm:{},
+    'p8_ee_WW_ecm%d'%ecm:{},
+    'wzp6_ee_eeH_ecm%d'%ecm:{},
+    'wzp6_ee_mumuH_ecm%d'%ecm:{},
+    'wzp6_ee_nunuH_ecm%d'%ecm:{},
+    'wzp6_ee_tautauH_ecm%d'%ecm:{},
+    'wzp6_ee_qqH_ecm%d'%ecm:{},
+    'wzp6_ee_ee_Mee_30_150_ecm%d'%ecm:{},
+    'wzp6_ee_mumu_ecm%d'%ecm:{},
+    'wzp6_ee_tautau_ecm%d'%ecm:{},
 }
+
+if (ecm==365): processList.update({'p8_ee_tt_ecm%d'%ecm:{}})
 
 #Mandatory: input directory when not running over centrally produced edm4hep events. 
 #It can still be edm4hep files produced standalone or files from a first analysis step (this is the case in this example it runs over the files produced from analysis.py)
-inputDir  = "/eos/user/a/amagnan/FCC/iDMprod/Analysis/stage1nocut"
+inputDir  = "/eos/user/a/amagnan/FCC/iDMprod/Analysis/stage1"
 
 #Optional: output directory, default is local dir
-outputDir   = "iDM/stage2nocut/"
+outputDir   = "/eos/user/a/amagnan/FCC/iDMprod/Analysis/stage2"
 
 #Optional: ncpus, default is 4
 nCPUS       = 4

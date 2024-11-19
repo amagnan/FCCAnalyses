@@ -5,12 +5,20 @@ rm signalXSlatex.dat
 
 for bp in `seq 1 20`; do
     myres=`grep "Cross-section :" ../../MG5prod/h2h2ll/ECM240_BP${bp}/condor.out | tail -n 1 | awk '{print $3}'`
+    myreserr=`grep "Cross-section :" ../../MG5prod/h2h2ll/ECM240_BP${bp}/condor.out | tail -n 1 | awk '{print $5}'`
     numevt=`grep "Nb of events" ../../MG5prod/h2h2ll/ECM240_BP${bp}/condor.out | tail -n 1 | awk '{print $5}'`
     whhll[${bp}]=${myres}/${numevt}
+    #error=$(echo "scale=3; $myreserr / $myres" | bc)
+    echo "hhll $bp $myres $myreserr"
     myres=`grep "Cross-section :" ../../MG5prod/h2h2llvv/ECM240_BP${bp}/condor.out | tail -n 1 | awk '{print $3}'`
+    myreserr=`grep "Cross-section :" ../../MG5prod/h2h2llvv/ECM240_BP${bp}/condor.out | tail -n 1 | awk '{print $5}'`
     numevt=`grep "Nb of events" ../../MG5prod/h2h2llvv/ECM240_BP${bp}/condor.out | tail -n 1 | awk '{print $5}'`
     whhllvv[${bp}]=${myres}/${numevt}
+    #error=$(echo "scale=3; $myreserr / $myres" | bc)
+    echo "hhllvv $bp $myres $myreserr"
 done
+
+break
 
 echo "${whhll[*]}"
 echo "${whhllvv[*]}"
