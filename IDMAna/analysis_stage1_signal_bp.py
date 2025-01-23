@@ -1,71 +1,48 @@
-import os
 import numpy as np
 
 #Mandatory: List of processes
-processList = {}
-scenarios={"cards_scenario_1_base","cards_scenario_2_max_lam345","cards_scenario_3_max_lam345_max_mHch"}
-# Define the input dir (optional)
-inputDir    = "/eos/experiment/fcc/ee/analyses_storage/BSM/IDM/241113"
-
-
-#need ecm separately because it is parsed to calculate the recoil mass...
-#ecm = 240
 ecm = 365
 
-for scen in scenarios:
-    scenId=scen.split("_")[2]
-    print(ecm,scen,scenId)
-    # Read a CSV file into a NumPy array
-    data = np.loadtxt('/afs/cern.ch/work/a/amagnan/FCC/MG5prod/Teddy/FCC_newRun_all/e%d/%s/input_arguments.txt'%(int(ecm),scen), delimiter=',', usecols = (1,2,3) )
-    #test run with only one line
-    #data = np.loadtxt('/afs/cern.ch/work/a/amagnan/FCC/MG5prod/Teddy/FCC_newRun_all/e%d/%s/input_arguments.txt'%(int(ecm),scen), delimiter=',', usecols=(1,2,3), max_rows=2 )
-    for mh,ma,mch in data:
-        if os.path.exists('%s/h2h2ll/Delphes_EDM4HEPevents_e%d_s%d_mH%d_mA%d_mCh%d.root'%(inputDir,ecm,int(scenId),int(mh),int(ma),int(mch))):
-            processList.update({"h2h2ll/Delphes_EDM4HEPevents_e%d_s%d_mH%d_mA%d_mCh%d"%(ecm,int(scenId),int(mh),int(ma),int(mch)):{"output":"e%d_s%d_mH%d_mA%d_mCh%d_h2h2ll"%(ecm,int(scenId),int(mh),int(ma),int(mch))}})
-        else:
-            print(mh,ma,mch)
-            print('!!! h2h2ll file not found')
-        if os.path.exists('%s/h2h2llvv/Delphes_EDM4HEPevents_e%d_s%d_mH%d_mA%d_mCh%d.root'%(inputDir,ecm,int(scenId),int(mh),int(ma),int(mch))):
-            processList.update({"h2h2llvv/Delphes_EDM4HEPevents_e%d_s%d_mH%d_mA%d_mCh%d"%(ecm,int(scenId),int(mh),int(ma),int(mch)):{"output":"e%d_s%d_mH%d_mA%d_mCh%d_h2h2llvv"%(ecm,int(scenId),int(mh),int(ma),int(mch))}})
-        else:
-            print(mh,ma,mch)        
-            print('!!! h2h2llvv file not found')
+data = np.loadtxt('../../MG5prod/Teddy/cards/input_arguments.txt', delimiter=',')
+
+processList = {}
+#for mh,ma in data:
+#    processList.update({"h2h2ll/Delphes_EDM4HEPevents_e%d_mH%d_mA%d"%(ecm,int(mh),int(ma)):{"output":"e%d_mH%d_mA%d_h2h2ll"%(ecm,int(mh),int(ma))}})
+#    processList.update({"h2h2llvv/Delphes_EDM4HEPevents_e%d_mH%d_mA%d"%(ecm,int(mh),int(ma)):{"output":"e%d_mH%d_mA%d_h2h2llvv"%(ecm,int(mh),int(ma))}})
+
+
+for bp in range(1,21):
+    processList.update({"h2h2ll/Delphes_EDM4HEPevents_e%d_bp%d"%(ecm,bp):{"output":"e%d_bp%d_h2h2ll"%(ecm,bp)}})
+    processList.update({"h2h2llvv/Delphes_EDM4HEPevents_e%d_bp%d"%(ecm,bp):{"output":"e%d_bp%d_h2h2llvv"%(ecm,bp)}})
 
 
 #Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
 #prodTag     = "FCCee/spring2021/IDEA/"
 
+# Define the input dir (optional)
+inputDir    = "/eos/user/a/amagnan/FCC/iDMprod/winter2023/"
 
 #Optional: output directory, default is local dir
 #outputDir   = "root://eosuser//eos/user/a/amagnan/FCC/iDMprod/Analysis/stage1"
-outputDir   = "/eos/experiment/fcc/ee/analyses_storage/BSM/IDM/241113/stage1"
-#outputDir   = "/afs/cern.ch/work/a/amagnan/FCC/FCCAnalyses/IDMAna/iDM/241113/stage1/"
+outputDir   = "/eos/user/a/amagnan/FCC/iDMprod/Analysis/stage1"
 
 #Optional: ncpus, default is 4
-nCPUS       = 8
+nCPUS       = 4
 
 #Optional running on HTCondor, default is False
 runBatch    = False
 
 #Optional batch queue name when running on HTCondor, default is workday
-#batchQueue = "espresso"
-
-#espresso     = 20 minutes
-#microcentury = 1 hour
-#longlunch    = 2 hours
-#workday      = 8 hours
-#tomorrow     = 1 day
-#testmatch    = 3 days
-#nextweek     = 1 week
+batchQueue = "espresso"
 
 #Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
-#compGroup = "group_u_FCC.local_gen"
+compGroup = "group_u_FCC.local_gen"
 
 #Optional output directory on eos, if specified files will be copied there once the batch job is done, default is empty
-#outputDirEos = "/eos/experiment/fcc/ee/analyses_storage/BSM/IDM/241113/stage1"
+#outputDirEos = "/eos/user/a/amagnan/FCC/iDMprod/Analysis/stage1"
 
 #Optional type for eos, needed when <outputDirEos> is specified. The default is FCC eos which is eospublic
-#eosType = "eospublic"
+eosType = "eosuser"
 
 #Mandatory: RDFanalysis class where the use defines the operations on the TTree
 class RDFanalysis():

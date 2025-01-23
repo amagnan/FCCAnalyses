@@ -1,6 +1,7 @@
 import numpy as np
 
-ecm = 365
+
+ecm = 240
 #Input directory where the files produced at the pre-selection level are
 inputDir  = "/eos/user/a/amagnan/FCC/iDMprod/Analysis/stage2/"
 
@@ -8,13 +9,13 @@ inputDir  = "/eos/user/a/amagnan/FCC/iDMprod/Analysis/stage2/"
 outputDir  = "iDM/final/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
+if (ecm==365): intLumi = 3.e6 #pb^-1
 if (ecm==240): intLumi = 10.8e6 #pb^-1
-if (ecm==365): intLumi = 2.7e6 #pb^-1
 
 #Scale event yields by intLumi and cross section (optional)
 doScale = True
 
-saveTabular = True
+saveTabular = False
 
 processList = {
     'p8_ee_ZZ_ecm%d'%ecm:{},
@@ -27,19 +28,36 @@ processList = {
     'wzp6_ee_ee_Mee_30_150_ecm%d'%ecm:{},
     'wzp6_ee_mumu_ecm%d'%ecm:{},
     'wzp6_ee_tautau_ecm%d'%ecm:{},
-#'e%d_s1_mH70_mA160_mCh160_h2h2ll'%ecm:{},
-#'e%d_s1_mH70_mA160_mCh160_h2h2llvv'%ecm:{},
-#'e%d_s1_mH80_mA130_mCh130_h2h2ll'%ecm:{},
-#'e%d_s1_mH80_mA130_mCh130_h2h2llvv'%ecm:{},
-#'e%d_s1_mH100_mA120_mCh120_h2h2ll'%ecm:{},
-#'e%d_s1_mH100_mA120_mCh120_h2h2llvv'%ecm:{},
+    'e%d_mH60_mA160_h2h2ll'%ecm:{},
+    'e%d_mH60_mA160_h2h2llvv'%ecm:{},
+    'e%d_mH80_mA130_h2h2ll'%ecm:{},
+    'e%d_mH80_mA130_h2h2llvv'%ecm:{},
+    'e%d_mH100_mA120_h2h2ll'%ecm:{},
+    'e%d_mH100_mA120_h2h2llvv'%ecm:{},
+#    'e%d_bp1_h2h2ll'%ecm:{},'e%d_bp1_h2h2llvv'%ecm:{},
+#    'e%d_bp2_h2h2ll'%ecm:{},'e%d_bp2_h2h2llvv'%ecm:{},
+    #'e%d_bp3_h2h2ll'%ecm:{},'e%d_bp3_h2h2llvv'%ecm:{},
+    #'e%d_bp4_h2h2ll'%ecm:{},'e%d_bp4_h2h2llvv'%ecm:{},
+    #'e%d_bp5_h2h2ll'%ecm:{},'e%d_bp5_h2h2llvv'%ecm:{},
+#    'e%d_bp6_h2h2ll'%ecm:{},'e%d_bp6_h2h2llvv'%ecm:{},
+    #'e%d_bp7_h2h2ll'%ecm:{},'e%d_bp7_h2h2llvv'%ecm:{},
+#    'e%d_bp8_h2h2ll'%ecm:{},'e%d_bp8_h2h2llvv'%ecm:{},
+    #'e%d_bp9_h2h2ll'%ecm:{},'e%d_bp9_h2h2llvv'%ecm:{},
+    #'e%d_bp10_h2h2ll'%ecm:{},'e%d_bp10_h2h2llvv'%ecm:{},
+    #'e%d_bp11_h2h2ll'%ecm:{},'e%d_bp11_h2h2llvv'%ecm:{},
+    #'e%d_bp12_h2h2ll'%ecm:{},'e%d_bp12_h2h2llvv'%ecm:{},
+    #'e%d_bp13_h2h2ll'%ecm:{},'e%d_bp13_h2h2llvv'%ecm:{},
+    #'e%d_bp14_h2h2ll'%ecm:{},'e%d_bp14_h2h2llvv'%ecm:{},
+#    'e%d_bp18_h2h2ll'%ecm:{},'e%d_bp18_h2h2llvv'%ecm:{},
+    #'e%d_bp19_h2h2ll'%ecm:{},'e%d_bp19_h2h2llvv'%ecm:{},
+    #'e%d_bp20_h2h2ll'%ecm:{},'e%d_bp20_h2h2llvv'%ecm:{},
 }
 
-data = np.loadtxt('input_arguments_check_%d.txt'%ecm, delimiter=',')
+data = np.loadtxt('input_arguments_check.txt', delimiter=',', usecols = (1,2))
 
-for mh,ma,mCh in data:
-    processList.update({"e%d_s1_mH%d_mA%d_mCh%d_h2h2ll"%(int(ecm),int(mh),int(ma),int(mCh)):{}})
-    processList.update({"e%d_s1_mH%d_mA%d_mCh%d_h2h2llvv"%(int(ecm),int(mh),int(ma),int(mCh)):{}})
+for mh,ma in data:
+    processList.update({"e%d_mH%d_mA%d_h2h2ll"%(ecm,int(mh),int(ma)):{}})
+    processList.update({"e%d_mH%d_mA%d_h2h2llvv"%(ecm,int(mh),int(ma)):{}})
     
 
 if (ecm==365): processList.update({'p8_ee_tt_ecm%d'%ecm:{}})
@@ -50,14 +68,9 @@ procDict = "FCCee_procDict_winter2023_IDEA.json"
 
 #Add signals as it is not an offical process
 # Open and read the JSON file
-signal=open('FCCee_signal_241113.txt', 'r')
-#signal=open('test_dict.txt', 'r')
+signal=open('FCCee_signal.txt', 'r')
 
-#print(signal)
-for line in signal.readlines():
-    print(line)
-    
-procDictAdd={line for line in signal.readlines()}
+procDictAdd=signal.readlines()
 
 
 #Number of CPUs to use
@@ -71,42 +84,42 @@ doTree = False
 if (ecm==240):
     cutList = {
 #        "TwoLep":"n_electrons==2 || n_muons==2",
-#        "TwoEle":"n_electrons==2 && n_muons==0",
-#        "TwoElepz":"n_electrons==2 && n_muons==0 && TMath::Abs(Zcand_pz)<70",
-#        "TwoElem":"n_electrons==2 && n_muons==0 && Zcand_m<120 && TMath::Abs(Zcand_pz)<70",
-#        "TwoElemet":"n_electrons==2 && n_muons==0 && Zcand_m<120 && TMath::Abs(Zcand_pz)<70 && MET_pt[0]>5",
-#        "TwoMu":"n_electrons==0 && n_muons==2",
-#        "TwoMupz":"n_electrons==0 && n_muons==2 && TMath::Abs(Zcand_pz)<70",
-#        "TwoMum":"n_electrons==0 && n_muons==2 && Zcand_m<120 && TMath::Abs(Zcand_pz)<70",
-#        "TwoMumet":"n_electrons==0 && n_muons==2 && Zcand_m<120 && TMath::Abs(Zcand_pz)<70 && MET_pt[0]>5",
+        "TwoEle":"n_electrons==2 && n_muons==0",
+        "TwoElepz":"n_electrons==2 && n_muons==0 && TMath::Abs(Zcand_pz)<70",
+        "TwoElem":"n_electrons==2 && n_muons==0 && Zcand_m<120 && TMath::Abs(Zcand_pz)<70",
+        "TwoElemet":"n_electrons==2 && n_muons==0 && Zcand_m<120 && TMath::Abs(Zcand_pz)<70 && MET_pt[0]>5",
+        "TwoMu":"n_electrons==0 && n_muons==2",
+        "TwoMupz":"n_electrons==0 && n_muons==2 && TMath::Abs(Zcand_pz)<70",
+        "TwoMum":"n_electrons==0 && n_muons==2 && Zcand_m<120 && TMath::Abs(Zcand_pz)<70",
+        "TwoMumet":"n_electrons==0 && n_muons==2 && Zcand_m<120 && TMath::Abs(Zcand_pz)<70 && MET_pt[0]>5",
 #        "TwoEle":"n_electrons==2 && n_muons==0 && Zcand_m<120 && TMath::Abs(Zcand_pz)<70 && MET_pt[0]>5",
 #        "TwoEleVetoObj":"Zcand_m<120 && TMath::Abs(Zcand_pz)<70 && n_electrons==2 && n_muons==0 && n_seljets<1 && n_photons==0 && MET_pt[0]>5",
 #        "TwoEleLepCuts":"Zcand_m<120 && TMath::Abs(Zcand_pz)<70 && n_electrons==2 && n_muons==0 && n_seljets<1 && n_photons==0 && MET_pt[0]>5 && lep1_pt<80 && lep2_pt<60",
-        "TwoElePoverE":"Zcand_m<120 && TMath::Abs(Zcand_pz)<70 && n_electrons==2 && n_muons==0 && n_seljets<1 && n_photons==0 && MET_pt[0]>5 && lep1_pt<80 && lep2_pt<60 && Zcand_povere>0.1",
+#        "TwoElePoverE":"Zcand_m<120 && TMath::Abs(Zcand_pz)<70 && n_electrons==2 && n_muons==0 && n_seljets<1 && n_photons==0 && MET_pt[0]>5 && lep1_pt<80 && lep2_pt<60 && Zcand_povere>0.1",
 #        "TwoMu":"n_electrons==0 && n_muons==2 && Zcand_m<120 && TMath::Abs(Zcand_pz)<70 && MET_pt[0]>5",
 #        "TwoMuVetoObj":"Zcand_m<120 && TMath::Abs(Zcand_pz)<70 && n_electrons==0 && n_muons==2 && n_seljets<1 && n_photons==0 && MET_pt[0]>5",
 #        "TwoMuLepCuts":"Zcand_m<120 && TMath::Abs(Zcand_pz)<70 && n_electrons==0 && n_muons==2 && n_seljets<1 && n_photons==0 && MET_pt[0]>5 && lep1_pt<80 && lep2_pt<60",
-        "TwoMuPoverE":"Zcand_m<120 && TMath::Abs(Zcand_pz)<70 && n_electrons==0 && n_muons==2 && n_seljets<1 && n_photons==0 && MET_pt[0]>5 && lep1_pt<80 && lep2_pt<60 && Zcand_povere>0.1",
+#        "TwoMuPoverE":"Zcand_m<120 && TMath::Abs(Zcand_pz)<70 && n_electrons==0 && n_muons==2 && n_seljets<1 && n_photons==0 && MET_pt[0]>5 && lep1_pt<80 && lep2_pt<60 && Zcand_povere>0.1",
     }
 if (ecm==365):
     cutList = {
 #        "TwoLep":"n_electrons==2 || n_muons==2",
-#        "TwoEle":"n_electrons==2 && n_muons==0",
-#        "TwoElepz":"n_electrons==2 && n_muons==0 && TMath::Abs(Zcand_pz)<140",
-#        "TwoElem":"n_electrons==2 && n_muons==0 && (Zcand_m<(-9.0/14.0 * abs(Zcand_pz) + 200)) && TMath::Abs(Zcand_pz)<140",
-#        "TwoElemet":"n_electrons==2 && n_muons==0 && (Zcand_m<(-9.0/14.0 * abs(Zcand_pz) + 200)) && TMath::Abs(Zcand_pz)<140 && MET_pt[0]>5",
-#        "TwoMu":"n_electrons==0 && n_muons==2",
-#        "TwoMupz":"n_electrons==0 && n_muons==2 && TMath::Abs(Zcand_pz)<140",
-#        "TwoMum":"n_electrons==0 && n_muons==2 && (Zcand_m<(-9.0/14.0 * abs(Zcand_pz) + 200)) && TMath::Abs(Zcand_pz)<140",
-#        "TwoMumet":"n_electrons==0 && n_muons==2 && (Zcand_m<(-9.0/14.0 * abs(Zcand_pz) + 200)) && TMath::Abs(Zcand_pz)<140 && MET_pt[0]>5",
+        "TwoEle":"n_electrons==2 && n_muons==0",
+        "TwoElepz":"n_electrons==2 && n_muons==0 && TMath::Abs(Zcand_pz)<140",
+        "TwoElem":"n_electrons==2 && n_muons==0 && (Zcand_m<(-9.0/14.0 * abs(Zcand_pz) + 200)) && TMath::Abs(Zcand_pz)<140",
+        "TwoElemet":"n_electrons==2 && n_muons==0 && (Zcand_m<(-9.0/14.0 * abs(Zcand_pz) + 200)) && TMath::Abs(Zcand_pz)<140 && MET_pt[0]>5",
+        "TwoMu":"n_electrons==0 && n_muons==2",
+        "TwoMupz":"n_electrons==0 && n_muons==2 && TMath::Abs(Zcand_pz)<140",
+        "TwoMum":"n_electrons==0 && n_muons==2 && (Zcand_m<(-9.0/14.0 * abs(Zcand_pz) + 200)) && TMath::Abs(Zcand_pz)<140",
+        "TwoMumet":"n_electrons==0 && n_muons==2 && (Zcand_m<(-9.0/14.0 * abs(Zcand_pz) + 200)) && TMath::Abs(Zcand_pz)<140 && MET_pt[0]>5",
 #        "TwoEle":"n_electrons==2 && n_muons==0 && (Zcand_m<(-9.0/14.0 * abs(Zcand_pz) + 200)) && TMath::Abs(Zcand_pz)<140 && MET_pt[0]>5",
 #        "TwoEleVetoObj":"n_electrons==2 && n_muons==0 && (Zcand_m<(-9.0/14.0 * abs(Zcand_pz) + 200)) && TMath::Abs(Zcand_pz)<140 && n_seljets<1 && n_photons==0 && MET_pt[0]>5",
 #        "TwoEleLepCuts":"n_electrons==2 && n_muons==0 && (Zcand_m<(-9.0/14.0 * abs(Zcand_pz) + 200)) && TMath::Abs(Zcand_pz)<140 && n_seljets<1 && n_photons==0 && MET_pt[0]>5 && lep1_pt<140 && lep2_pt<80",
-        "TwoElePoverE":"n_electrons==2 && n_muons==0 && (Zcand_m<(-9.0/14.0 * abs(Zcand_pz) + 200)) && TMath::Abs(Zcand_pz)<140 && n_seljets<1 && n_photons==0 && MET_pt[0]>5 && lep1_pt<140 && lep2_pt<80 && Zcand_povere>0.1",
+#        "TwoElePoverE":"n_electrons==2 && n_muons==0 && (Zcand_m<(-9.0/14.0 * abs(Zcand_pz) + 200)) && TMath::Abs(Zcand_pz)<140 && n_seljets<1 && n_photons==0 && MET_pt[0]>5 && lep1_pt<140 && lep2_pt<80 && Zcand_povere>0.1",
 #        "TwoMu":"n_electrons==0 && n_muons==2 && (Zcand_m<(-9.0/14.0 * abs(Zcand_pz) + 200)) && TMath::Abs(Zcand_pz)<140 && MET_pt[0]>5",
 #        "TwoMuVetoObj":"n_electrons==0 && n_muons==2 && (Zcand_m<(-9.0/14.0 * abs(Zcand_pz) + 200)) && TMath::Abs(Zcand_pz)<140 && n_seljets<1 && n_photons==0 && MET_pt[0]>5",
 #        "TwoMuLepCuts":"n_electrons==0 && n_muons==2 && (Zcand_m<(-9.0/14.0 * abs(Zcand_pz) + 200)) && TMath::Abs(Zcand_pz)<140 && n_seljets<1 && n_photons==0 && MET_pt[0]>5 && lep1_pt<140 && lep2_pt<80",
-        "TwoMuPoverE":"n_electrons==0 && n_muons==2 && (Zcand_m<(-9.0/14.0 * abs(Zcand_pz) + 200)) && TMath::Abs(Zcand_pz)<140 && n_seljets<1 && n_photons==0 && MET_pt[0]>5 && lep1_pt<140 && lep2_pt<80 && Zcand_povere>0.1",
+#        "TwoMuPoverE":"n_electrons==0 && n_muons==2 && (Zcand_m<(-9.0/14.0 * abs(Zcand_pz) + 200)) && TMath::Abs(Zcand_pz)<140 && n_seljets<1 && n_photons==0 && MET_pt[0]>5 && lep1_pt<140 && lep2_pt<80 && Zcand_povere>0.1",
     }
 
 
@@ -134,8 +147,8 @@ histoList = {
     "n_photons":{"name":"n_photons","title":"Number of photons","bin":10,"xmin":0,"xmax":10},
 #    "n_electrons":{"name":"n_electrons","title":"Number of electrons","bin":10,"xmin":0,"xmax":10},
 #    "n_muons":{"name":"n_muons","title":"Number of muons","bin":10,"xmin":0,"xmax":10},
-    "mZ":{"name":"Zcand_m","title":"M_{#mu#mu} [GeV]","bin":50,"xmin":0,"xmax":200},
-    "mZzoom":{"name":"Zcand_m","title":"M_{#mu#mu} [GeV]","bin":60,"xmin":0,"xmax":120},
+    "mZ":{"name":"Zcand_m","title":"m_{ll} [GeV]","bin":60,"xmin":0,"xmax":370},
+    "mZzoom":{"name":"Zcand_m","title":"m_{ll} [GeV]","bin":60,"xmin":0,"xmax":120},
     "ptZ":{"name":"Zcand_pt","title":"p_{T}^{ll} [GeV]","bin":50,"xmin":0,"xmax":200},
     "mZrecoil":{"name":"Zcand_recoil_m","title":"Z recoil [GeV]","bin":50,"xmin":0,"xmax":370},
     "photon1_pt":{"name":"photon1_pt","title":"p_{T}^{photon1} [GeV]","bin":50,"xmin":-1,"xmax":200},
@@ -160,8 +173,7 @@ histoList = {
     "MET_pt":{"name":"MET_pt","title":"ETmiss [GeV]","bin":50,"xmin":0,"xmax":370},
     "pZ":{"name":"Zcand_p","title":"p^{ll} [GeV]","bin":50,"xmin":0,"xmax":300},
     "pzZ":{"name":"Zcand_pz","title":"p_{z}^{ll} [GeV]","bin":100,"xmin":-250,"xmax":250},
-    "eZ240":{"name":"Zcand_e","title":"E^{#mu#mu} [GeV]","bin":30,"xmin":0,"xmax":150},
-    "eZ365":{"name":"Zcand_e","title":"E^{#mu#mu} [GeV]","bin":46,"xmin":0,"xmax":230},
+    "eZ":{"name":"Zcand_e","title":"E^{ll} [GeV]","bin":50,"xmin":0,"xmax":380},
     "povereZ":{"name":"Zcand_povere","title":"p^{ll}/E^{ll}","bin":50,"xmin":0,"xmax":1.5},
     "costhetaZ":{"name":"Zcand_costheta","title":"cos#theta^{ll}","bin":50,"xmin":-1,"xmax":1},
     "cosThetaStar":{"name":"cosThetaStar","title":"cos#theta_{l}^{*}","bin":50,"xmin":-1,"xmax":1},

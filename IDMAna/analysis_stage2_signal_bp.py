@@ -1,40 +1,23 @@
-import os
 import numpy as np
 
 #Mandatory: List of processes
+ecm = 365
+
+data = np.loadtxt('../../MG5prod/Teddy/cards/input_arguments_365.txt', delimiter=',')
+
 processList = {}
-scenarios={"cards_scenario_1_base","cards_scenario_2_max_lam345","cards_scenario_3_max_lam345_max_mHch"}
+#for mh,ma in data:
+#    processList.update({"e%d_mH%d_mA%d_h2h2ll"%(ecm,int(mh),int(ma)):{}})
+#    processList.update({"e%d_mH%d_mA%d_h2h2llvv"%(ecm,int(mh),int(ma)):{}})
+
+for bp in range(1,21):
+    processList.update({"e%d_bp%d_h2h2ll"%(ecm,bp):{}})
+    processList.update({"e%d_bp%d_h2h2llvv"%(ecm,bp):{}})
+
 
 #Mandatory: input directory when not running over centrally produced edm4hep events. 
 #It can still be edm4hep files produced standalone or files from a first analysis step (this is the case in this example it runs over the files produced from analysis.py)
-inputDir  = "/eos/experiment/fcc/ee/analyses_storage/BSM/IDM/241113/stage1"
-
-
-#need ecm separately because it is parsed to calculate the recoil mass...
-#ecm = 240
-ecm = 365
-
-for scen in scenarios:
-    scenId=scen.split("_")[2]
-    print(ecm,scen,scenId)
-    # Read a CSV file into a NumPy array
-    data = np.loadtxt('/afs/cern.ch/work/a/amagnan/FCC/MG5prod/Teddy/FCC_newRun_all/e%d/%s/input_arguments.txt'%(int(ecm),scen), delimiter=',', usecols = (1,2,3) )
-    #test run with only one line
-    #data = np.loadtxt('/afs/cern.ch/work/a/amagnan/FCC/MG5prod/Teddy/FCC_newRun_all/e%d/%s/input_arguments.txt'%(int(ecm),scen), delimiter=',', usecols=(1,2,3), max_rows=2 )
-    for mh,ma,mch in data:
-        if os.path.exists('%s/e%d_s%d_mH%d_mA%d_mCh%d_h2h2ll.root'%(inputDir,ecm,int(scenId),int(mh),int(ma),int(mch))):
-            processList.update({"e%d_s%d_mH%d_mA%d_mCh%d_h2h2ll"%(ecm,int(scenId),int(mh),int(ma),int(mch)):{}})
-        else:
-            print(mh,ma,mch)
-            print('!!! h2h2ll file not found')
-        if os.path.exists('%s/e%d_s%d_mH%d_mA%d_mCh%d_h2h2llvv.root'%(inputDir,ecm,int(scenId),int(mh),int(ma),int(mch))):
-            processList.update({"e%d_s%d_mH%d_mA%d_mCh%d_h2h2llvv"%(ecm,int(scenId),int(mh),int(ma),int(mch)):{}})
-        else:
-            print(mh,ma,mch)        
-            print('!!! h2h2llvv file not found')
-
-
-
+inputDir  = "/eos/user/a/amagnan/FCC/iDMprod/Analysis/stage1"
 
 #Optional: output directory, default is local dir
 outputDir   = "/eos/user/a/amagnan/FCC/iDMprod/Analysis/stage2"
