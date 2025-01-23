@@ -54,8 +54,8 @@ signal=open('FCCee_signal_241113.txt', 'r')
 #signal=open('test_dict.txt', 'r')
 
 #print(signal)
-for line in signal.readlines():
-    print(line)
+#for line in signal.readlines():
+#    print(line)
     
 procDictAdd={line for line in signal.readlines()}
 
