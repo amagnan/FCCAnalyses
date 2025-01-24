@@ -1,4 +1,5 @@
 import numpy as np
+import json
 
 ecm = 365
 #Input directory where the files produced at the pre-selection level are
@@ -50,15 +51,9 @@ procDict = "FCCee_procDict_winter2023_IDEA.json"
 
 #Add signals as it is not an offical process
 # Open and read the JSON file
-signal=open('FCCee_signal_241113.txt', 'r')
-#signal=open('test_dict.txt', 'r')
-
-#print(signal)
-#for line in signal.readlines():
-#    print(line)
-    
-procDictAdd={line for line in signal.readlines()}
-
+#with open('test_input.json', 'r') as jsonfile:
+with open('FCCee_signal_241113.txt', 'r') as jsonfile:
+    procDictAdd = json.load(jsonfile)
 
 #Number of CPUs to use
 nCPUS = 4

@@ -1,5 +1,5 @@
 import ROOT
-ecm = 365
+ecm = 240
 
 # global parameters
 #already applied in final stage
@@ -130,14 +130,14 @@ colors['iDM5'] = ROOT.kGray+3
 plots = {}
 plots['Zee'] = {
     'signal':{
-#        'iDM1':['e%d_s1_mH70_mA76_mCh76_h2h2ll'%(ecm),'e%d_s1_mH70_mA76_mCh76_h2h2llvv'%(ecm)],
-#        'iDM2':['e%d_s1_mH80_mA150_mCh150_h2h2ll'%(ecm),'e%d_s1_mH80_mA150_mCh150_h2h2llvv'%(ecm)],
-#        'iDM3':['e%d_s1_mH100_mA134_mCh134_h2h2ll'%(ecm),'e%d_s1_mH100_mA134_mCh134_h2h2llvv'%(ecm)],
-        'iDM1':['e%d_s1_mH100_mA104_mCh104_h2h2ll'%(ecm),'e%d_s1_mH100_mA104_mCh104_h2h2llvv'%(ecm)],
-        'iDM2':['e%d_s1_mH120_mA231_mCh231_h2h2ll'%(ecm),'e%d_s1_mH120_mA231_mCh231_h2h2llvv'%(ecm)],
-        'iDM3':['e%d_s1_mH125_mA215_mCh215_h2h2ll'%(ecm),'e%d_s1_mH125_mA215_mCh215_h2h2llvv'%(ecm)],
-        'iDM4':['e%d_s1_mH140_mA200_mCh200_h2h2ll'%(ecm),'e%d_s1_mH140_mA200_mCh200_h2h2llvv'%(ecm)],
-        'iDM5':['e%d_s1_mH160_mA185_mCh185_h2h2ll'%(ecm),'e%d_s1_mH160_mA185_mCh185_h2h2llvv'%(ecm)],
+        'iDM1':['e%d_s1_mH70_mA76_mCh76_h2h2ll'%(ecm),'e%d_s1_mH70_mA76_mCh76_h2h2llvv'%(ecm)],
+        'iDM2':['e%d_s1_mH80_mA150_mCh150_h2h2ll'%(ecm),'e%d_s1_mH80_mA150_mCh150_h2h2llvv'%(ecm)],
+        'iDM3':['e%d_s1_mH100_mA134_mCh134_h2h2ll'%(ecm),'e%d_s1_mH100_mA134_mCh134_h2h2llvv'%(ecm)],
+#        'iDM1':['e%d_s1_mH100_mA104_mCh104_h2h2ll'%(ecm),'e%d_s1_mH100_mA104_mCh104_h2h2llvv'%(ecm)],
+#        'iDM2':['e%d_s1_mH120_mA231_mCh231_h2h2ll'%(ecm),'e%d_s1_mH120_mA231_mCh231_h2h2llvv'%(ecm)],
+#        'iDM3':['e%d_s1_mH125_mA215_mCh215_h2h2ll'%(ecm),'e%d_s1_mH125_mA215_mCh215_h2h2llvv'%(ecm)],
+#        'iDM4':['e%d_s1_mH140_mA200_mCh200_h2h2ll'%(ecm),'e%d_s1_mH140_mA200_mCh200_h2h2llvv'%(ecm)],
+#        'iDM5':['e%d_s1_mH160_mA185_mCh185_h2h2ll'%(ecm),'e%d_s1_mH160_mA185_mCh185_h2h2llvv'%(ecm)],
 #        'iDM1':['e%d_bp1_h2h2ll'%(ecm),'e%d_bp1_h2h2llvv'%(ecm)],
 #        'iDM2':['e%d_bp2_h2h2ll'%(ecm),'e%d_bp2_h2h2llvv'%(ecm)],
 #        'iDM6':['e%d_bp6_h2h2ll'%(ecm),'e%d_bp6_h2h2llvv'%(ecm)],
@@ -158,14 +158,14 @@ plots['Zee'] = {
 }
 plots['Zmumu'] = {
     'signal':{
-#        'iDM1':['e%d_s1_mH70_mA76_mCh76_h2h2ll'%(ecm),'e%d_s1_mH70_mA76_mCh76_h2h2llvv'%(ecm)],
-#        'iDM2':['e%d_s1_mH80_mA150_mCh150_h2h2ll'%(ecm),'e%d_s1_mH80_mA150_mCh150_h2h2llvv'%(ecm)],
-#        'iDM3':['e%d_s1_mH100_mA134_mCh134_h2h2ll'%(ecm),'e%d_s1_mH100_mA134_mCh134_h2h2llvv'%(ecm)],
-        'iDM1':['e%d_s1_mH100_mA104_mCh104_h2h2ll'%(ecm),'e%d_s1_mH100_mA104_mCh104_h2h2llvv'%(ecm)],
-        'iDM2':['e%d_s1_mH120_mA231_mCh231_h2h2ll'%(ecm),'e%d_s1_mH120_mA231_mCh231_h2h2llvv'%(ecm)],
-        'iDM3':['e%d_s1_mH125_mA215_mCh215_h2h2ll'%(ecm),'e%d_s1_mH125_mA215_mCh215_h2h2llvv'%(ecm)],
-        'iDM4':['e%d_s1_mH140_mA200_mCh200_h2h2ll'%(ecm),'e%d_s1_mH140_mA200_mCh200_h2h2llvv'%(ecm)],
-        'iDM5':['e%d_s1_mH160_mA185_mCh185_h2h2ll'%(ecm),'e%d_s1_mH160_mA185_mCh185_h2h2llvv'%(ecm)],
+        'iDM1':['e%d_s1_mH70_mA76_mCh76_h2h2ll'%(ecm),'e%d_s1_mH70_mA76_mCh76_h2h2llvv'%(ecm)],
+        'iDM2':['e%d_s1_mH80_mA150_mCh150_h2h2ll'%(ecm),'e%d_s1_mH80_mA150_mCh150_h2h2llvv'%(ecm)],
+        'iDM3':['e%d_s1_mH100_mA134_mCh134_h2h2ll'%(ecm),'e%d_s1_mH100_mA134_mCh134_h2h2llvv'%(ecm)],
+#        'iDM1':['e%d_s1_mH100_mA104_mCh104_h2h2ll'%(ecm),'e%d_s1_mH100_mA104_mCh104_h2h2llvv'%(ecm)],
+#        'iDM2':['e%d_s1_mH120_mA231_mCh231_h2h2ll'%(ecm),'e%d_s1_mH120_mA231_mCh231_h2h2llvv'%(ecm)],
+#        'iDM3':['e%d_s1_mH125_mA215_mCh215_h2h2ll'%(ecm),'e%d_s1_mH125_mA215_mCh215_h2h2llvv'%(ecm)],
+#        'iDM4':['e%d_s1_mH140_mA200_mCh200_h2h2ll'%(ecm),'e%d_s1_mH140_mA200_mCh200_h2h2llvv'%(ecm)],
+#        'iDM5':['e%d_s1_mH160_mA185_mCh185_h2h2ll'%(ecm),'e%d_s1_mH160_mA185_mCh185_h2h2llvv'%(ecm)],
 #        'iDM1':['e%d_bp1_h2h2ll'%(ecm),'e%d_bp1_h2h2llvv'%(ecm)],
 #        'iDM2':['e%d_bp2_h2h2ll'%(ecm),'e%d_bp2_h2h2llvv'%(ecm)],
 #        'iDM6':['e%d_bp6_h2h2ll'%(ecm),'e%d_bp6_h2h2llvv'%(ecm)],
